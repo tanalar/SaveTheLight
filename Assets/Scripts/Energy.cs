@@ -6,7 +6,7 @@ using UnityEngine;
 public class Energy : MonoBehaviour
 {
     [SerializeField] private GameObject player;
-    private float speed = 2.5f;
+    private float speed = 3;
     private bool follow = false;
     private float distance;
 
@@ -122,10 +122,6 @@ public class Energy : MonoBehaviour
         {
             follow = false;
         }
-    }
-    private void Start()
-    {
-        
     }
 
     private void Update()

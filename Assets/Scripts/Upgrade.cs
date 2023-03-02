@@ -10,7 +10,6 @@ public class Upgrade : MonoBehaviour
     [SerializeField] private int upgradeLevels;
     [SerializeField] private Slider slider;
     public static Action<string, float> onUpgrade;
-    public static Action onEnergyMinus;
 
     private void Start()
     {
@@ -25,8 +24,8 @@ public class Upgrade : MonoBehaviour
         {
             slider.value = PlayerPrefs.GetFloat(productName);
             slider.value += (slider.maxValue - slider.minValue) / upgradeLevels;
+            PlayerPrefs.SetInt("energy", energyCount - 1);
             onUpgrade?.Invoke(productName, slider.value);
-            onEnergyMinus?.Invoke();
         }
         else if(slider.value >= slider.maxValue)
         {

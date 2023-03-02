@@ -22,13 +22,13 @@ public class PlayerController : MonoBehaviour
     {
         Bonfire.onPlayerCanSee += CanSee;
         Bonfire.onPlayerCanNotSee += CanNotSee;
-        Values.onUpgrade += SpeedUpgrade;
+        Values.onSetValues += SetValue;
     }
     private void OnDisable()
     {
         Bonfire.onPlayerCanSee -= CanSee;
         Bonfire.onPlayerCanNotSee -= CanNotSee;
-        Values.onUpgrade -= SpeedUpgrade;
+        Values.onSetValues -= SetValue;
     }
 
     private void Update()
@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
         canSee = false;
     }
 
-    private void SpeedUpgrade()
+    private void SetValue()
     {
         speed = PlayerPrefs.GetFloat("playerSpeed");
     }

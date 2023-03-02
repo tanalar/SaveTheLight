@@ -20,34 +20,23 @@ public class EnergyStorage : MonoBehaviour
     private void Start()
     {
         StartCoroutine(Delay());
-        energyCounter = PlayerPrefs.GetInt("energy");
-        textCounter.text = energyCounter.ToString();
-        upgradeMenuTextCounter.text = energyCounter.ToString();
     }
 
     private void OnEnable()
     {
         Energy.onDestroy += EnergyPlus;
-        Upgrade.onEnergyMinus += EnergyMinus;
+        Values.onSetValues += SetEnergyCount;
     }
     private void OnDisable()
     {
         Energy.onDestroy -= EnergyPlus;
-        Upgrade.onEnergyMinus -= EnergyMinus;
+        Values.onSetValues -= SetEnergyCount;
     }
 
     private void EnergyPlus(int value)
     {
         energyCounter += value;
-        ResetPlayerPrefs();
-        textCounter.text = energyCounter.ToString();
-        upgradeMenuTextCounter.text = energyCounter.ToString();
-    }
-
-    private void EnergyMinus()
-    {
-        energyCounter--;
-        ResetPlayerPrefs();
+        SetPlayerPrefs();
         textCounter.text = energyCounter.ToString();
         upgradeMenuTextCounter.text = energyCounter.ToString();
     }
@@ -57,16 +46,23 @@ public class EnergyStorage : MonoBehaviour
         if (energyCounter > 0)
         {
             energyCounter--;
-            ResetPlayerPrefs();
+            SetPlayerPrefs();
             onAddLight?.Invoke();
             textCounter.text = energyCounter.ToString();
             upgradeMenuTextCounter.text = energyCounter.ToString();
         }
     }
 
-    private void ResetPlayerPrefs()
+    private void SetPlayerPrefs()
     {
         PlayerPrefs.SetInt("energy", energyCounter);
+    }
+
+    private void SetEnergyCount()
+    {
+        energyCounter = PlayerPrefs.GetInt("energy");
+        textCounter.text = energyCounter.ToString();
+        upgradeMenuTextCounter.text = energyCounter.ToString();
     }
 
 

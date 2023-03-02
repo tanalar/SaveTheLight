@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private float damage = 1;
+    private float damage;
+
+    private void Start()
+    {
+        damage = PlayerPrefs.GetFloat("playerDamage");
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

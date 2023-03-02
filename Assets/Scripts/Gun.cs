@@ -7,8 +7,10 @@ public class Gun : MonoBehaviour
     [SerializeField] private List<Transform> shotPoints;
     [SerializeField] private List<Transform> closedShotPoints;
     [SerializeField] private GameObject bulletPrefab;
-    private float fireForce = 30;
-    private float fireRate = 0.5f;
+    [SerializeField] private CircleCollider2D fireRange1;
+    [SerializeField] private CircleCollider2D fireRange2;
+    private float fireForce;
+    private float fireRate;
     private bool canFire = false;
 
     private void Start()
@@ -20,11 +22,13 @@ public class Gun : MonoBehaviour
     {
         FindClosestEnemy.onNotEmpty += CanFire;
         FindClosestEnemy.onEmpty += CanNotFire;
+        Values.onSetValues += SetValues;
     }
     private void OnDisable()
     {
         FindClosestEnemy.onNotEmpty -= CanFire;
         FindClosestEnemy.onEmpty -= CanNotFire;
+        Values.onSetValues -= SetValues;
     }
 
     public void Fire()
@@ -65,5 +69,14 @@ public class Gun : MonoBehaviour
     public void CanNotFire()
     {
         canFire = false;
+    }
+
+    private void SetValues()
+    {
+        fireRange1.radius = PlayerPrefs.GetFloat("playerFireRange");
+        fireRange2.radius = fireRange1.radius / 2;
+        fireForce = PlayerPrefs.GetFloat("playerFireForce");
+        float prefsRate = PlayerPrefs.GetFloat("playerFireRate");
+        fireRate = 0.5f - prefsRate;
     }
 }
