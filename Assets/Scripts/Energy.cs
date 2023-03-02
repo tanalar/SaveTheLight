@@ -105,7 +105,7 @@ public class Energy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "PlayerTexture")
+        if(collision.gameObject.tag == "Player")
         {
             onDestroy?.Invoke(value);
             Destroy(gameObject);

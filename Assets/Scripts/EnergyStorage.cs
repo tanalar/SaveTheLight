@@ -75,14 +75,14 @@ public class EnergyStorage : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "PlayerTexture")
+        if(collision.gameObject.tag == "Player")
         {
             fade = false;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "PlayerTexture")
+        if (collision.gameObject.tag == "Player")
         {
             fade = true;
         }

@@ -63,7 +63,7 @@ public class Bonfire : MonoBehaviour
             onEnemyVisible?.Invoke();
         }
 
-        if(collision.gameObject.tag == "PlayerTexture")
+        if(collision.gameObject.tag == "Player")
         {
             onPlayerCanSee?.Invoke();
         }
@@ -77,7 +77,7 @@ public class Bonfire : MonoBehaviour
             onEnemyInvisible?.Invoke();
         }
 
-        if (collision.gameObject.tag == "PlayerTexture")
+        if (collision.gameObject.tag == "Player")
         {
             onPlayerCanNotSee?.Invoke();
         }

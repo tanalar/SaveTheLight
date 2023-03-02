@@ -10,6 +10,7 @@ TagManager:
   - PlayerTexture
   - Bonfire
   - Magnet
+  - FireRange
   layers:
   - Default
   - TransparentFX
