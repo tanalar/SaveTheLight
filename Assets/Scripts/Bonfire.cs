@@ -86,5 +86,13 @@ public class Bonfire : MonoBehaviour
     private void AddLight()
     {
         Light.pointLightOuterRadius += 2.5f / Light.pointLightOuterRadius;
+        if(bonfireTexture.transform.localScale.x < 1)
+        {
+            bonfireTexture.transform.localScale = new Vector3(bonfireTexture.transform.localScale.x + 0.05f, bonfireTexture.transform.localScale.y + 0.05f, bonfireTexture.transform.localScale.z + 0.05f);
+            if(bonfireTexture.transform.localScale.x > 1)
+            {
+                bonfireTexture.transform.localScale = new Vector3(1, 1, 1);
+            }
+        }
     }
 }

@@ -168,5 +168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 995d8722f890150449be106e58526b5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   energyTexture: {fileID: 4789436433273106672}
   currentColor: 1
