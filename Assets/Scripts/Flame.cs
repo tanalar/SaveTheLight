@@ -43,6 +43,7 @@ public class Flame : MonoBehaviour
 
     void Start()
     {
+        SetValues();
         transform.localScale = new Vector3(minSize, minSize, minSize);
         currentSize = minSize;
         StartCoroutine(FlameDelay());
@@ -109,7 +110,7 @@ public class Flame : MonoBehaviour
 
     private void SetValues()
     {
-        fireForce = PlayerPrefs.GetFloat("flameThrowerFireForce");
-        damage = PlayerPrefs.GetFloat("flameThrowerDamage");
+        fireForce = PlayerPrefs.GetFloat("flamethrowerFireForce");
+        damage = PlayerPrefs.GetFloat("flamethrowerDamage");
     }
 }

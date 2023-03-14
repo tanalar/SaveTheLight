@@ -6,7 +6,7 @@ public class EnemySize : MonoBehaviour
 {
     [SerializeField] private Enemy Enemy;
     private float max;
-    private float min = 0.5f;
+    private float min = 0.75f;
     private float current;
 
     private void OnEnable()

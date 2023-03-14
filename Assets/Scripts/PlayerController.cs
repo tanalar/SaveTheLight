@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
             Vector3 vectorToTarget = closestEnemy.closestEnemy.transform.position - transform.position;
             float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - 90;
             Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-            transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * 100);
+            transform.rotation = q;
         }
         else 
         {

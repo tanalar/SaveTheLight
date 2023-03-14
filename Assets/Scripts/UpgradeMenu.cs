@@ -8,12 +8,14 @@ public class UpgradeMenu : MonoBehaviour
     [SerializeField] private GameObject upgradeMenu;
     [SerializeField] private GameObject upgradesButton;
     [SerializeField] private GameObject energyCounter;
-    [SerializeField] private GameObject addLightBubbon;
+    [SerializeField] private GameObject addLightButton;
     [SerializeField] private GameObject joystick;
 
     [SerializeField] private GameObject selectionMenu;
     [SerializeField] private List<GameObject> upgradeMenus;
     [SerializeField] private GameObject playerUpgradeMenu;
+    [SerializeField] private GameObject flamethrowerUpgradeMenu;
+    [SerializeField] private GameObject laserUpgradeMenu;
 
     public bool pauseGame = false;
 
@@ -21,7 +23,7 @@ public class UpgradeMenu : MonoBehaviour
     {
         upgradesButton.SetActive(false);
         energyCounter.SetActive(false);
-        addLightBubbon.SetActive(false);
+        addLightButton.SetActive(false);
         joystick.SetActive(false);
 
         upgradeMenu.SetActive(true);
@@ -33,7 +35,7 @@ public class UpgradeMenu : MonoBehaviour
     {
         upgradesButton.SetActive(true);
         energyCounter.SetActive(true);
-        addLightBubbon.SetActive(true);
+        addLightButton.SetActive(true);
         joystick.SetActive(true);
 
         for (int i = 0; i < upgradeMenus.Count; i++)
@@ -59,5 +61,17 @@ public class UpgradeMenu : MonoBehaviour
     {
         selectionMenu.SetActive(false);
         playerUpgradeMenu.SetActive(true);
+    }
+
+    public void FlamethrowerUpgradeMenu()
+    {
+        selectionMenu.SetActive(false);
+        flamethrowerUpgradeMenu.SetActive(true);
+    }
+
+    public void LaserUpgradeMenu()
+    {
+        selectionMenu.SetActive(false);
+        laserUpgradeMenu.SetActive(true);
     }
 }

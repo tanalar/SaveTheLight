@@ -414,6 +414,7 @@
 "Assets/Scripts/FindClosestEnemy.cs"
 "Assets/Scripts/Flame.cs"
 "Assets/Scripts/Gun.cs"
+"Assets/Scripts/Laser.cs"
 "Assets/Scripts/LootBag.cs"
 "Assets/Scripts/LootData.cs"
 "Assets/Scripts/PlayerController.cs"
