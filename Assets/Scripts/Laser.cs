@@ -8,24 +8,26 @@ public class Laser : MonoBehaviour
     [SerializeField] private GameObject laserTexture;
     [SerializeField] private SpriteRenderer laserSprite;
 
+    [SerializeField] private List<Enemy> list;
+
     private float fireRate;
     private float fireDuration;
     private float damage;
     private float minSize = 0;
     private float currentSize;
-    private float maxSize = 0.1f;
+    private float maxSize = 0.075f;
     private bool canFire = false;
     private bool fire = true;
 
     private float r;
     private float g;
     private float b;
-    private float rFrom = 1;
-    private float gFrom = 0.2941177f;
-    private float bFrom = 0.1686275f;
-    private float rTo = 1;
-    private float gTo = 0.254902f;
-    private float bTo = 0.4235294f;
+    private float rFrom = 0.8823529f;
+    private float gFrom = 0f;
+    private float bFrom = 1f;
+    private float rTo = 0.4980392f;
+    private float gTo = 0f;
+    private float bTo = 1f;
 
     private void OnEnable()
     {
@@ -42,6 +44,7 @@ public class Laser : MonoBehaviour
 
     private void Start()
     {
+        SetValues();
         currentSize = maxSize;
         StartCoroutine(Delay());
     }
@@ -50,11 +53,20 @@ public class Laser : MonoBehaviour
     {
         if (fire)
         {
+            if(list.Count > 0)
+            {
+                for (int i = 0; i < list.Count; i++)
+                {
+                    list[i].TakeDamage(damage);
+                }
+            }
+
             currentSize -= fireDuration;
             if (currentSize <= minSize)
             {
                 fire = false;
                 laserTexture.SetActive(false);
+                list.Clear();
             }
         }
         if (!fire)
@@ -94,11 +106,18 @@ public class Laser : MonoBehaviour
         canFire = false;
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemyComponent))
         {
-            enemyComponent.TakeDamage(damage);
+            list.Add(enemyComponent);
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemyComponent))
+        {
+            list.Remove(enemyComponent);
         }
     }
 

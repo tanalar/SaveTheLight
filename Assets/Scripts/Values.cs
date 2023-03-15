@@ -23,7 +23,7 @@ public class Values : MonoBehaviour
 
     private void SetDefaultValues()
     {
-        PlayerPrefs.SetInt("energy", 500);
+        PlayerPrefs.SetInt("energy", 1000);
 
         //Player
         PlayerPrefs.SetFloat("playerMaxHp", 100);
@@ -38,9 +38,9 @@ public class Values : MonoBehaviour
         PlayerPrefs.SetFloat("flamethrowerDamage", 0.05f);
 
         //Laser
-        PlayerPrefs.SetFloat("laserFireRate", 0.005f);
+        PlayerPrefs.SetFloat("laserFireRate", 0.004f);
         PlayerPrefs.SetFloat("laserFireDuration", 0);
-        PlayerPrefs.SetFloat("laserDamage", 0.001f);
+        PlayerPrefs.SetFloat("laserDamage", 0.4f);
 
         onSetValues?.Invoke();
     }

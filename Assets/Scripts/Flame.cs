@@ -21,12 +21,12 @@ public class Flame : MonoBehaviour
     private float r;
     private float g;
     private float b;
-    private float rGradientFrom = 0f;
-    private float gGradientFrom = 1f;
-    private float bGradientFrom = 0.9764706f;
-    private float rGradientTo = 1f;
-    private float gGradientTo = 0f;
-    private float bGradientTo = 0.7568628f;
+    private float rGradientFrom = 0.9607843f;
+    private float gGradientFrom = 0.6862745f;
+    private float bGradientFrom = 0.09803922f;
+    private float rGradientTo = 0.945098f;
+    private float gGradientTo = 0.1529412f;
+    private float bGradientTo = 0.06666667f;
 
     private void OnEnable()
     {

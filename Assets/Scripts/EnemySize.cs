@@ -8,6 +8,9 @@ public class EnemySize : MonoBehaviour
     private float max;
     private float min = 0.75f;
     private float current;
+    private float to;
+    private bool switcher = false;
+    private float sizeChangerSpeed = 500;
 
     private void OnEnable()
     {
@@ -19,15 +22,34 @@ public class EnemySize : MonoBehaviour
         Enemy.onHp -= SizeChanger;
     }
 
+    private void Update()
+    {
+        if (switcher)
+        {
+            if (current > to)
+            {
+                current -= 0.01f * (Time.deltaTime * sizeChangerSpeed);
+                if (current <= to)
+                {
+                    current = to;
+                    switcher = false;
+                }
+            }
+            transform.localScale = new Vector3(current, current, current);
+        }
+    }
+
     private void SizeChanger(float hp, float fullHp)
     {
-        current = max - ((max - min) / fullHp * (fullHp - hp));
-        transform.localScale = new Vector3(current, current, current);
+        to = max - ((max - min) / fullHp * (fullHp - hp));
+        switcher = true;
+        //transform.localScale = new Vector3(to, to, to);
     }
 
     public void SetSize(float from, float to)
     {
         max = Random.Range(from, to);
+        current = max;
         transform.localScale = new Vector3(max, max, max);
     }
 }

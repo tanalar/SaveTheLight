@@ -38,7 +38,7 @@ public class FindClosestEnemy : MonoBehaviour
                 enemies.RemoveAt(i);
                 i = 0;
             }
-            if (enemies[i].gameObject.tag == "Visible")
+            if (enemies[i].gameObject.tag == "Visible" && enemies[i] != null)
             {
                 Vector3 diff = enemies[i].transform.position - position;
                 float currentDistance = diff.sqrMagnitude;
