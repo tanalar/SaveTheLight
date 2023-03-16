@@ -16,6 +16,7 @@ public class UpgradeMenu : MonoBehaviour
     [SerializeField] private GameObject playerUpgradeMenu;
     [SerializeField] private GameObject flamethrowerUpgradeMenu;
     [SerializeField] private GameObject laserUpgradeMenu;
+    [SerializeField] private GameObject aoeUpgradeMenu;
 
     public bool pauseGame = false;
 
@@ -73,5 +74,11 @@ public class UpgradeMenu : MonoBehaviour
     {
         selectionMenu.SetActive(false);
         laserUpgradeMenu.SetActive(true);
+    }
+
+    public void AoeUpgradeMenu()
+    {
+        selectionMenu.SetActive(false);
+        aoeUpgradeMenu.SetActive(true);
     }
 }

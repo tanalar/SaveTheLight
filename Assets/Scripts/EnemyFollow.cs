@@ -6,8 +6,9 @@ public class EnemyFollow : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     private float speed;
-    private float distance;
+    //private float distance;
     private float rageMultiplier = 1;
+    private float aoeMultiplier = 1;
 
     private void OnEnable()
     {
@@ -30,7 +31,7 @@ public class EnemyFollow : MonoBehaviour
         //distance = Vector2.Distance(transform.position, player.transform.position);
         //Vector2 direction = player.transform.position - transform.position;
 
-        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, (speed * rageMultiplier) * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, player.transform.position, (speed * rageMultiplier * aoeMultiplier) * Time.deltaTime);
     }
 
     public void SetSpeed(float speed)
@@ -40,10 +41,15 @@ public class EnemyFollow : MonoBehaviour
 
     private void RageOn()
     {
-        rageMultiplier = 1.2f;
+        rageMultiplier = 1.25f;
     }
     private void RageOff()
     {
         rageMultiplier = 1;
+    }
+
+    public void SetAoeMultiplier(float multiplier)
+    {
+        aoeMultiplier = multiplier;
     }
 }

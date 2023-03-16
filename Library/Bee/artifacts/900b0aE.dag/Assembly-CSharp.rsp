@@ -400,6 +400,7 @@
 "Assets/Joystick Pack/Scripts/Joysticks/FixedJoystick.cs"
 "Assets/Joystick Pack/Scripts/Joysticks/FloatingJoystick.cs"
 "Assets/Joystick Pack/Scripts/Joysticks/VariableJoystick.cs"
+"Assets/Scripts/Aoe.cs"
 "Assets/Scripts/Bonfire.cs"
 "Assets/Scripts/Bullet.cs"
 "Assets/Scripts/CameraFollow.cs"

@@ -57,7 +57,10 @@ public class Laser : MonoBehaviour
             {
                 for (int i = 0; i < list.Count; i++)
                 {
-                    list[i].TakeDamage(damage);
+                    if (list[i] != null)
+                    {
+                        list[i].TakeDamage(damage);
+                    }
                 }
             }
 

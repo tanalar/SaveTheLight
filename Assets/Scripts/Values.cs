@@ -42,6 +42,11 @@ public class Values : MonoBehaviour
         PlayerPrefs.SetFloat("laserFireDuration", 0);
         PlayerPrefs.SetFloat("laserDamage", 0.4f);
 
+        //Aoe
+        PlayerPrefs.SetFloat("aoeDamage", 0.035f);
+        PlayerPrefs.SetFloat("aoeSlowdownMultiplier", 0);
+        PlayerPrefs.SetFloat("aoeRadius", 0.75f);
+
         onSetValues?.Invoke();
     }
 
