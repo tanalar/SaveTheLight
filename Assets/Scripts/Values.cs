@@ -23,6 +23,13 @@ public class Values : MonoBehaviour
 
     private void SetDefaultValues()
     {
+        //Difficult
+        PlayerPrefs.SetFloat("enemyHpMultiplier", 1);
+        PlayerPrefs.SetFloat("enemySpeedMultiplier", 1);
+        PlayerPrefs.SetFloat("enemySizeMultiplier", 1);
+        PlayerPrefs.SetFloat("enemySpawnRateMultiplier", 0);
+
+        //Energy
         PlayerPrefs.SetInt("energy", 1000);
 
         //Player

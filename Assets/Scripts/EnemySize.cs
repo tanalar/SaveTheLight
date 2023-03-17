@@ -48,7 +48,7 @@ public class EnemySize : MonoBehaviour
 
     public void SetSize(float from, float to)
     {
-        max = Random.Range(from, to);
+        max = Random.Range(from, to) * PlayerPrefs.GetFloat("enemySizeMultiplier");
         current = max;
         transform.localScale = new Vector3(max, max, max);
     }

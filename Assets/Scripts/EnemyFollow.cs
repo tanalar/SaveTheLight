@@ -36,7 +36,7 @@ public class EnemyFollow : MonoBehaviour
 
     public void SetSpeed(float speed)
     {
-        this.speed = speed;
+        this.speed = speed * PlayerPrefs.GetFloat("enemySpeedMultiplier");
     }
 
     private void RageOn()

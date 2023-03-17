@@ -33,11 +33,11 @@ public class FindClosestEnemy : MonoBehaviour
 
         for (int i = 0; i < enemies.Count; i++)
         {
-            if (enemies[i] == null)
-            {
-                enemies.RemoveAt(i);
-                i = 0;
-            }
+            //if (enemies[i] == null)
+            //{
+            //    enemies.RemoveAt(i);
+            //    i = 0;
+            //}
             if (enemies[i].gameObject.tag == "Visible" && enemies[i] != null)
             {
                 Vector3 diff = enemies[i].transform.position - position;

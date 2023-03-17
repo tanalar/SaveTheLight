@@ -30,7 +30,7 @@ public class Enemy : MonoBehaviour
     public void SetValues(EnemyData randomData)
     {
         data = randomData;
-        fullHp = data.hp;
+        fullHp = data.hp * PlayerPrefs.GetFloat("enemyHpMultiplier");
         hp = fullHp;
         GetComponent<EnemyFollow>().SetSpeed(data.speed);
         GetComponent<EnemySize>().SetSize(data.sizeFrom, data.sizeTo);

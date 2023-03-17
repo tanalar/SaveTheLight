@@ -404,6 +404,7 @@
 "Assets/Scripts/Bonfire.cs"
 "Assets/Scripts/Bullet.cs"
 "Assets/Scripts/CameraFollow.cs"
+"Assets/Scripts/DifficultController.cs"
 "Assets/Scripts/Enemy.cs"
 "Assets/Scripts/EnemyColor.cs"
 "Assets/Scripts/EnemyData.cs"

@@ -15,6 +15,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
+        SetDelay();
         StartCoroutine(Delay());
     }
 
@@ -22,11 +23,13 @@ public class EnemySpawner : MonoBehaviour
     {
         Bonfire.onPlayerCanSee += RageOff;
         Bonfire.onPlayerCanNotSee += RageOn;
+        Values.onSetValues += SetDelay;
     }
     private void OnDisable()
     {
         Bonfire.onPlayerCanSee -= RageOff;
         Bonfire.onPlayerCanNotSee -= RageOn;
+        Values.onSetValues -= SetDelay;
     }
 
     private EnemyData GetSpawnedEnemy()
@@ -93,12 +96,20 @@ public class EnemySpawner : MonoBehaviour
     private void RageOn()
     {
         rage = true;
-        delay = 2;
+        delay = 1.5f;
     }
 
     private void RageOff()
     {
         rage = false;
-        delay = 4;
+        SetDelay();
+    }
+
+    private void SetDelay()
+    {
+        if(delay > 1)
+        {
+            delay = 4 - PlayerPrefs.GetFloat("enemySpawnRateMultiplier");
+        }
     }
 }
