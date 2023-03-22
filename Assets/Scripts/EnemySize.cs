@@ -24,6 +24,10 @@ public class EnemySize : MonoBehaviour
 
     private void Update()
     {
+        if (current <= min)
+        {
+            GetComponent<Enemy>().Death();
+        }
         if (switcher)
         {
             if (current > to)

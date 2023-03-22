@@ -16,14 +16,10 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        hp -= damage;
-        onHp?.Invoke(hp, fullHp);
-
-        if(hp <= 0)
+        if (hp > 0)
         {
-            onDeath?.Invoke();
-            GetComponent<LootBag>().InstantiateLoot(transform.position);
-            Destroy(gameObject);
+            hp -= damage;
+            onHp?.Invoke(hp, fullHp);
         }
     }
 
@@ -36,5 +32,12 @@ public class Enemy : MonoBehaviour
         GetComponent<EnemySize>().SetSize(data.sizeFrom, data.sizeTo);
         GetComponent<EnemyColor>().SetColor(data.rFrom, data.gFrom, data.bFrom, data.rTo, data.gTo, data.bTo);
         onHp?.Invoke(hp, fullHp);
+    }
+
+    public void Death()
+    {
+        GetComponent<LootBag>().InstantiateLoot(transform.position);
+        onDeath?.Invoke();
+        Destroy(gameObject);
     }
 }
