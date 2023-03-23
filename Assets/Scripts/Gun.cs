@@ -50,17 +50,17 @@ public class Gun : MonoBehaviour
         Fire();
     }
 
-    public void GunUnlock()
-    {
-        shotPoints.Add(closedShotPoints[0]);
-        shotPoints.Add(closedShotPoints[1]);
-        closedShotPoints.RemoveAt(0);
-        closedShotPoints.RemoveAt(0);
-    }
-    public void GunFireRate()
-    {
-        fireRate /= 1.2f;
-    }
+    //public void GunUnlock()
+    //{
+    //    shotPoints.Add(closedShotPoints[0]);
+    //    shotPoints.Add(closedShotPoints[1]);
+    //    closedShotPoints.RemoveAt(0);
+    //    closedShotPoints.RemoveAt(0);
+    //}
+    //public void GunFireRate()
+    //{
+    //    fireRate /= 1.2f;
+    //}
 
     public void CanFire()
     {

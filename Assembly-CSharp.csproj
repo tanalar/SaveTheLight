@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\Bonfire.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\Scripts\EnergyStorage.cs" />
+    <Compile Include="Assets\Scripts\Knockback.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
     <Compile Include="Assets\Scripts\Aoe.cs" />
@@ -121,7 +122,8 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\Scripts\UpgradeMenu.cs" />
-    <Compile Include="Assets\Scripts\Knockback.cs" />
+    <Compile Include="Assets\Scripts\Minigun.cs" />
+    <Compile Include="Assets\Scripts\MinigunBullet.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

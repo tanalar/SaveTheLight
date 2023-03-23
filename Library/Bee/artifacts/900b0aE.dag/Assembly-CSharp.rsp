@@ -420,6 +420,8 @@
 "Assets/Scripts/Laser.cs"
 "Assets/Scripts/LootBag.cs"
 "Assets/Scripts/LootData.cs"
+"Assets/Scripts/Minigun.cs"
+"Assets/Scripts/MinigunBullet.cs"
 "Assets/Scripts/PlayerController.cs"
 "Assets/Scripts/SatelliteController.cs"
 "Assets/Scripts/Upgrade.cs"

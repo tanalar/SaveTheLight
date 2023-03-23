@@ -54,6 +54,11 @@ public class Values : MonoBehaviour
         PlayerPrefs.SetFloat("aoeSlowdownMultiplier", 0);
         PlayerPrefs.SetFloat("aoeRadius", 0.75f);
 
+        //Minigun
+        PlayerPrefs.SetFloat("minigunFireForce", 7.5f);
+        PlayerPrefs.SetFloat("minigunFireRate", 0);
+        PlayerPrefs.SetFloat("minigunDamage", 0.075f);
+
         onSetValues?.Invoke();
     }
 

@@ -76,7 +76,7 @@ public class FindClosestEnemy : MonoBehaviour
         {
             onEmpty?.Invoke();
         }
-        if(enemies.Count > 0)
+        if(enemies.Count > 0 && closestEnemy != null)
         {
             onNotEmpty?.Invoke();
         }
