@@ -12,12 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e2dc336cda72c409a4a83a72cfd504, type: 3}
   m_Name: 1 - CommonEnergy
   m_EditorClassIdentifier: 
-  rFrom: 0.6784314
-  gFrom: 0.6627451
-  bFrom: 0.5882353
-  rTo: 0.8588235
-  gTo: 0.8588235
-  bTo: 0.8588235
+  color: {r: 0.9176471, g: 0.9176471, b: 0.9176471, a: 1}
   dropChance: 100
   scaleMultiplier: 1
   value: 1

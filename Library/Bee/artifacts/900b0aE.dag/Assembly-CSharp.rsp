@@ -424,6 +424,8 @@
 "Assets/Scripts/MinigunBullet.cs"
 "Assets/Scripts/PlayerController.cs"
 "Assets/Scripts/SatelliteController.cs"
+"Assets/Scripts/Sniper.cs"
+"Assets/Scripts/SniperBullet.cs"
 "Assets/Scripts/Upgrade.cs"
 "Assets/Scripts/UpgradeMenu.cs"
 "Assets/Scripts/Values.cs"

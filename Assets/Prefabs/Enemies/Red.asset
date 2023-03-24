@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Red
   m_EditorClassIdentifier: 
   spawnChance: 40
-  hp: 9
-  speed: 3
-  sizeFrom: 6
+  hp: 3
+  speed: 2.5
+  sizeFrom: 5
   sizeTo: 7
   rFrom: 1
   gFrom: 0.2941177

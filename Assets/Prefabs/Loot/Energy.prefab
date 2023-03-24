@@ -170,4 +170,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   energyTexture: {fileID: 4789436433273106672}
-  currentColor: 1

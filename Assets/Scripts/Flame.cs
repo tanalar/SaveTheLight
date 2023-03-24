@@ -14,7 +14,7 @@ public class Flame : MonoBehaviour
     private float damage;
     private float minSize = 0.5f;
     private float currentSize;
-    private float maxSize = 0.75f;
+    private float maxSize = 1;
     private float randomBurn = 0.0025f;
     private bool canFire = false;
 
@@ -75,10 +75,10 @@ public class Flame : MonoBehaviour
             {
                 transform.position = new Vector3(-100, -100, -100);
             }
-            randomTarget.position = new Vector3(target.position.x + Random.Range(-2, 2), target.position.y + Random.Range(-2, 2), target.position.z);
+            randomTarget.position = new Vector3(target.position.x + Random.Range(-2.5f, 2.5f), target.position.y + Random.Range(-2.5f, 2.5f), target.position.z);
 
-            randomBurn = Random.Range(0.005f, 0.006f);
-            maxSize = Random.Range(0.8f, 1);
+            randomBurn = Random.Range(0.005f, 0.0075f);
+            maxSize = Random.Range(0.8f, 1.25f);
         }
 
         spriteRenderer.color = new Color(r, g, b);

@@ -12,12 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e2dc336cda72c409a4a83a72cfd504, type: 3}
   m_Name: 3 - RareEnergy
   m_EditorClassIdentifier: 
-  rFrom: 0.3372549
-  gFrom: 0.8
-  bFrom: 0.9490196
-  rTo: 0.1843137
-  gTo: 0.5019608
-  bTo: 0.9294118
+  color: {r: 0, g: 0.62352943, b: 1, a: 1}
   dropChance: 10
   scaleMultiplier: 1.2
   value: 10

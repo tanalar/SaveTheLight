@@ -33,7 +33,7 @@ public class Bonfire : MonoBehaviour
     {
         if (Light.pointLightOuterRadius > 0)
         {
-            Light.pointLightOuterRadius -= 0.04f;
+            Light.pointLightOuterRadius -= 0.025f + PlayerPrefs.GetFloat("bonfireFadeMultiplier");
             Light.pointLightInnerRadius = Light.pointLightOuterRadius / 10;
             circleCollider.radius= Light.pointLightOuterRadius;
             if (Light.pointLightOuterRadius <= 1)

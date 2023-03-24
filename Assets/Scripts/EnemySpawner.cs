@@ -51,10 +51,36 @@ public class EnemySpawner : MonoBehaviour
     {
         if(rage == false)
         {
-            int randomNumber = Random.Range(0, spawnPoint.Count);
+            int randomCount = Random.Range(1, 101);
+
+            int randomSpawnPoint = Random.Range(0, spawnPoint.Count);
             EnemyData spawnedEnemy = GetSpawnedEnemy();
-            GameObject enemyGameObject = Instantiate(enemyPrefab, spawnPoint[randomNumber].position, Quaternion.identity);
+            GameObject enemyGameObject = Instantiate(enemyPrefab, spawnPoint[randomSpawnPoint].position, Quaternion.identity);
             enemyGameObject.GetComponent<Enemy>().SetValues(spawnedEnemy);
+
+            if(randomCount <= 75)
+            {
+                randomSpawnPoint = Random.Range(0, spawnPoint.Count);
+                spawnedEnemy = GetSpawnedEnemy();
+                enemyGameObject = Instantiate(enemyPrefab, spawnPoint[randomSpawnPoint].position, Quaternion.identity);
+                enemyGameObject.GetComponent<Enemy>().SetValues(spawnedEnemy);
+
+                if (randomCount <= 50)
+                {
+                    randomSpawnPoint = Random.Range(0, spawnPoint.Count);
+                    spawnedEnemy = GetSpawnedEnemy();
+                    enemyGameObject = Instantiate(enemyPrefab, spawnPoint[randomSpawnPoint].position, Quaternion.identity);
+                    enemyGameObject.GetComponent<Enemy>().SetValues(spawnedEnemy);
+
+                    if (randomCount <= 25)
+                    {
+                        randomSpawnPoint = Random.Range(0, spawnPoint.Count);
+                        spawnedEnemy = GetSpawnedEnemy();
+                        enemyGameObject = Instantiate(enemyPrefab, spawnPoint[randomSpawnPoint].position, Quaternion.identity);
+                        enemyGameObject.GetComponent<Enemy>().SetValues(spawnedEnemy);
+                    }
+                }
+            }
         }
         if(rage == true)
         {

@@ -12,6 +12,7 @@ public class Minigun : MonoBehaviour
 
     private void Start()
     {
+        SetValues();
         Fire();
     }
 

@@ -10,6 +10,7 @@ public class DifficultController : MonoBehaviour
     private float speedMultiplier;
     private float sizeMultiplier;
     private float spawnRateMultiplier;
+    private float bonfireFadeMultiplier;
 
     private void Start()
     {
@@ -31,18 +32,21 @@ public class DifficultController : MonoBehaviour
         speedMultiplier = PlayerPrefs.GetFloat("enemySpeedMultiplier");
         sizeMultiplier = PlayerPrefs.GetFloat("enemySizeMultiplier");
         spawnRateMultiplier = PlayerPrefs.GetFloat("enemySpawnRateMultiplier");
+        bonfireFadeMultiplier = PlayerPrefs.GetFloat("bonfireFadeMultiplier");
     }
 
     private void Upgrade()
     {
-        hpMultiplier += 0.025f;
-        speedMultiplier += 0.0025f;
-        sizeMultiplier += 0.0025f;
-        spawnRateMultiplier += 0.005f;
+        hpMultiplier += 0.01f;
+        speedMultiplier += 0.0005f;
+        sizeMultiplier += 0.0005f;
+        spawnRateMultiplier += 0.0005f;
+        bonfireFadeMultiplier += 0.00002f;
 
         PlayerPrefs.SetFloat("enemyHpMultiplier", hpMultiplier);
         PlayerPrefs.SetFloat("enemySpeedMultiplier", speedMultiplier);
         PlayerPrefs.SetFloat("enemySizeMultiplier", sizeMultiplier);
         PlayerPrefs.SetFloat("enemySpawnRateMultiplier", spawnRateMultiplier);
+        PlayerPrefs.SetFloat("bonfireFadeMultiplier", bonfireFadeMultiplier);
     }
 }

@@ -28,6 +28,7 @@ public class Values : MonoBehaviour
         PlayerPrefs.SetFloat("enemySpeedMultiplier", 1);
         PlayerPrefs.SetFloat("enemySizeMultiplier", 1);
         PlayerPrefs.SetFloat("enemySpawnRateMultiplier", 0);
+        PlayerPrefs.SetFloat("bonfireFadeMultiplier", 0);
 
         //Energy
         PlayerPrefs.SetInt("energy", 1000);

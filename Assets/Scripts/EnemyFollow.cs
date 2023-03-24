@@ -36,7 +36,8 @@ public class EnemyFollow : MonoBehaviour
 
     public void SetSpeed(float speed)
     {
-        this.speed = speed * PlayerPrefs.GetFloat("enemySpeedMultiplier");
+        float randomMultiplier = Random.Range(0.9f, 1.1f);
+        this.speed = speed * PlayerPrefs.GetFloat("enemySpeedMultiplier") * randomMultiplier;
     }
 
     private void RageOn()

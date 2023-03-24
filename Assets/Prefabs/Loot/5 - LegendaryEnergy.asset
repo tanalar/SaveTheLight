@@ -12,12 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e2dc336cda72c409a4a83a72cfd504, type: 3}
   m_Name: 5 - LegendaryEnergy
   m_EditorClassIdentifier: 
-  rFrom: 1
-  gFrom: 0.8862745
-  bFrom: 0.3490196
-  rTo: 1
-  gTo: 0.654902
-  bTo: 0.3176471
+  color: {r: 1, g: 0.8235294, b: 0, a: 1}
   dropChance: 1
   scaleMultiplier: 1.4
   value: 100
