@@ -11,8 +11,14 @@ public class Energy : MonoBehaviour
     private float speed = 3;
     private bool follow = false;
     private int value;
+    private float a = 1;
 
     public static Action<int> onDestroy;
+
+    private void Start()
+    {
+        StartCoroutine(Destroy());
+    }
 
     public void SetValues(LootData data)
     {
@@ -52,5 +58,17 @@ public class Energy : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
         }
+    }
+
+    private IEnumerator Destroy()
+    {
+        yield return new WaitForSeconds(0.2f);
+        a -= 0.01f;
+        energyTexture.color = new Color(energyTexture.color.r, energyTexture.color.g, energyTexture.color.b, a);
+        if(a <= 0)
+        {
+            Destroy(gameObject);
+        }
+        StartCoroutine(Destroy());
     }
 }

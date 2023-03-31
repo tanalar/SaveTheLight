@@ -2,18 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Pool))]
+
 public class Minigun : MonoBehaviour
 {
     [SerializeField] private List<Transform> shotPoints;
-    [SerializeField] private GameObject bulletPrefab;
+    //[SerializeField] private GameObject bulletPrefab;
     private float fireForce;
     private float fireRate;
     private bool canFire = false;
+    private Pool pool;
 
     private void Start()
     {
+        pool = GetComponent<Pool>();
         SetValues();
-        Fire();
+        StartCoroutine(FireRate());
     }
 
     private void OnEnable()
@@ -31,19 +35,21 @@ public class Minigun : MonoBehaviour
 
     private void Fire()
     {
-        if (canFire)
-        {
-            int random = Random.Range(0, shotPoints.Count);
-            GameObject bullet = Instantiate(bulletPrefab, shotPoints[random].transform.position, shotPoints[random].transform.rotation);
-            bullet.GetComponent<Rigidbody2D>().AddForce(shotPoints[random].up * fireForce, ForceMode2D.Impulse);
-        }
-        StartCoroutine(FireRate());
+        int random = Random.Range(0, shotPoints.Count);
+        PoolObject bullet = pool.GetFreeElement(shotPoints[random].transform.position, shotPoints[random].transform.rotation);
+        //GameObject bullet = Instantiate(bulletPrefab, shotPoints[random].transform.position, shotPoints[random].transform.rotation);
+        bullet.GetComponent<Rigidbody2D>().AddForce(shotPoints[random].up * fireForce, ForceMode2D.Impulse);
     }
 
     private IEnumerator FireRate()
     {
+        if (canFire)
+        {
+            Fire();
+        }
+
         yield return new WaitForSeconds(fireRate);
-        Fire();
+        StartCoroutine(FireRate());
     }
 
     public void CanFire()

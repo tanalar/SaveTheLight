@@ -5,14 +5,24 @@ using System;
 using Unity.Mathematics;
 using UnityEditor.Rendering;
 
+[RequireComponent(typeof(PoolObject))]
+
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] EnemyFollow enemyFollow;
     private float hp;
     private float fullHp;
     private EnemyData data;
-    
+    private PoolObject poolObject;
+
     public static Action onDeath;
     public Action<float, float> onHp;
+
+    private void Start()
+    {
+        poolObject = GetComponent<PoolObject>();
+        enemyFollow = GetComponent<EnemyFollow>();
+    }
 
     public void TakeDamage(float damage)
     {
@@ -38,6 +48,8 @@ public class Enemy : MonoBehaviour
     {
         GetComponent<LootBag>().InstantiateLoot(transform.position);
         onDeath?.Invoke();
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        enemyFollow.enabled = true;
+        poolObject.ReturnToPool();
     }
 }

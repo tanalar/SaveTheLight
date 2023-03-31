@@ -101,6 +101,7 @@
     <Compile Include="Assets\Scripts\MinigunBullet.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
+    <Compile Include="Assets\Scripts\Sniper.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\SatelliteController.cs" />
     <Compile Include="Assets\Scripts\Minigun.cs" />
@@ -122,10 +123,11 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
+    <Compile Include="Assets\Scripts\SniperBullet.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\Scripts\UpgradeMenu.cs" />
-    <Compile Include="Assets\Scripts\Sniper.cs" />
-    <Compile Include="Assets\Scripts\SniperBullet.cs" />
+    <Compile Include="Assets\Scripts\PoolObject.cs" />
+    <Compile Include="Assets\Scripts\Pool.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 6193188731008081468}
   - component: {fileID: 5146580081034383025}
   - component: {fileID: 8510086020858852138}
+  - component: {fileID: 5565420258169048199}
   m_Layer: 0
   m_Name: MinigunBullet
   m_TagString: Untagged
@@ -149,7 +150,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -166,5 +167,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79320fbf6d88cf4449a1a4328744a548, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5565420258169048199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5657114198540863925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ad20012b4b31344dadb4469fe7e69f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

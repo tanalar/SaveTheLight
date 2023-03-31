@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 3078220655041424782}
   - component: {fileID: 926706261041267972}
   - component: {fileID: 3502014946275929081}
+  - component: {fileID: 7042851510339314049}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Invisible
@@ -90,6 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f561b1bbfd0ef684d9750ef4af3d3f22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyFollow: {fileID: 0}
 --- !u!114 &6785327743092332251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,7 +139,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1750866167885607841}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6558e1d5f063824195e60f9de8973d8, type: 3}
   m_Name: 
@@ -213,8 +215,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb2d: {fileID: 506427549304980822}
-  strength: 5000
-  delay: 0.1
   OnBegin:
     m_PersistentCalls:
       m_Calls:
@@ -245,6 +245,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!114 &7042851510339314049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750866167885607841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ad20012b4b31344dadb4469fe7e69f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2989321461515188427
 GameObject:
   m_ObjectHideFlags: 0

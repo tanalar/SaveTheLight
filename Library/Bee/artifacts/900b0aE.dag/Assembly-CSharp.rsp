@@ -423,6 +423,8 @@
 "Assets/Scripts/Minigun.cs"
 "Assets/Scripts/MinigunBullet.cs"
 "Assets/Scripts/PlayerController.cs"
+"Assets/Scripts/Pool.cs"
+"Assets/Scripts/PoolObject.cs"
 "Assets/Scripts/SatelliteController.cs"
 "Assets/Scripts/Sniper.cs"
 "Assets/Scripts/SniperBullet.cs"

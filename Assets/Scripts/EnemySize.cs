@@ -10,7 +10,7 @@ public class EnemySize : MonoBehaviour
     private float current;
     private float to;
     private bool switcher = false;
-    private float sizeChangerSpeed = 550;
+    private float sizeChangerSpeed = 600;
 
     private void OnEnable()
     {
@@ -32,7 +32,7 @@ public class EnemySize : MonoBehaviour
         {
             if (current > to)
             {
-                current -= 0.01f * (Time.deltaTime * sizeChangerSpeed);
+                current -= 0.01f * (sizeChangerSpeed * Time.deltaTime);
                 if (current <= to)
                 {
                     current = to;
