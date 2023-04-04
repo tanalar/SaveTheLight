@@ -2,20 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Pool))]
+
 public class Gun : MonoBehaviour
 {
     [SerializeField] private List<Transform> shotPoints;
     [SerializeField] private List<Transform> closedShotPoints;
-    [SerializeField] private GameObject bulletPrefab;
+    //[SerializeField] private GameObject bulletPrefab;
     [SerializeField] private CircleCollider2D fireRange1;
-    [SerializeField] private CircleCollider2D fireRange2;
-    private float fireForce;
+    //[SerializeField] private CircleCollider2D fireRange2;
+    //private float fireForce;
     private float fireRate;
     private bool canFire = false;
+    private Pool pool;
 
     private void Start()
     {
-        Fire();
+        pool = GetComponent<Pool>();
+        StartCoroutine(FireRate());
     }
 
     private void OnEnable()
@@ -33,21 +37,22 @@ public class Gun : MonoBehaviour
 
     public void Fire()
     {
-        if (canFire)
+        for (int i = 0; i < shotPoints.Count; i++)
         {
-            for (int i = 0; i < shotPoints.Count; i++)
-            {
-                GameObject bullet = Instantiate(bulletPrefab, shotPoints[i].transform.position, shotPoints[i].transform.rotation);
-                bullet.GetComponent<Rigidbody2D>().AddForce(shotPoints[i].up * fireForce, ForceMode2D.Impulse);
-            }
+            PoolObject bullet = pool.GetFreeElement(shotPoints[i].transform.position, shotPoints[i].transform.rotation);
+            //GameObject bullet = Instantiate(bulletPrefab, shotPoints[i].transform.position, shotPoints[i].transform.rotation);
+            //bullet.GetComponent<Rigidbody2D>().AddForce(shotPoints[i].up * fireForce, ForceMode2D.Impulse);
         }
-        StartCoroutine(FireRate());
     }
 
     private IEnumerator FireRate()
     {
+        if (canFire)
+        {
+            Fire();
+        }
         yield return new WaitForSeconds(fireRate);
-        Fire();
+        StartCoroutine(FireRate());
     }
 
     //public void GunUnlock()
@@ -64,18 +69,25 @@ public class Gun : MonoBehaviour
 
     public void CanFire()
     {
-        canFire = true;
+        if (!canFire)
+        {
+            canFire = true;
+            StartCoroutine(FireRate());
+        }
     }
     public void CanNotFire()
     {
-        canFire = false;
+        if (canFire)
+        {
+            canFire = false;
+            StopAllCoroutines();
+        }
     }
 
     private void SetValues()
     {
         fireRange1.radius = PlayerPrefs.GetFloat("playerFireRange");
-        fireRange2.radius = fireRange1.radius / 2;
-        fireForce = PlayerPrefs.GetFloat("playerFireForce");
+        //fireRange2.radius = fireRange1.radius / 2;
         float prefsRate = PlayerPrefs.GetFloat("playerFireRate");
         fireRate = 0.5f - prefsRate;
     }

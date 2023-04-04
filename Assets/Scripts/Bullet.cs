@@ -1,16 +1,33 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
+[RequireComponent(typeof(PoolObject))]
 
 public class Bullet : MonoBehaviour
 {
+    private float fireForce;
     private float damage;
-    private float knockback;
+    [SerializeField]private float knockback;
+    private PoolObject poolObject;
 
     private void Start()
     {
-        damage = PlayerPrefs.GetFloat("playerDamage");
-        knockback = 100 * PlayerPrefs.GetFloat("playerFireForce");
+        poolObject = GetComponent<PoolObject>();
+    }
+
+    private void Update()
+    {
+        transform.Translate(Vector2.up * fireForce * Time.deltaTime);
+    }
+
+    private void OnEnable()
+    {
+        SetValues();
+        StartCoroutine("Destroy");
+    }
+    private void OnDisable()
+    {
+        StopCoroutine("Destroy");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -22,11 +39,26 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemyComponent))
         {
             enemyComponent.TakeDamage(damage);
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            poolObject.ReturnToPool();
         }
         if(collision.gameObject.tag == "Wall")
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            poolObject.ReturnToPool();
         }
+    }
+
+    private void SetValues()
+    {
+        damage = PlayerPrefs.GetFloat("playerDamage");
+        knockback = 325 * (PlayerPrefs.GetFloat("playerFireForce") - 10);
+        fireForce = PlayerPrefs.GetFloat("playerFireForce");
+    }
+
+    private IEnumerator Destroy()
+    {
+        yield return new WaitForSeconds(2);
+        poolObject.ReturnToPool();
     }
 }

@@ -20,7 +20,7 @@ public class Pool : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void Awake()
     {
         CreatePool();
     }

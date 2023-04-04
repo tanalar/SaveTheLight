@@ -17,7 +17,7 @@ public class Minigun : MonoBehaviour
     {
         pool = GetComponent<Pool>();
         SetValues();
-        StartCoroutine(FireRate());
+        //StartCoroutine(FireRate());
     }
 
     private void OnEnable()
@@ -38,7 +38,7 @@ public class Minigun : MonoBehaviour
         int random = Random.Range(0, shotPoints.Count);
         PoolObject bullet = pool.GetFreeElement(shotPoints[random].transform.position, shotPoints[random].transform.rotation);
         //GameObject bullet = Instantiate(bulletPrefab, shotPoints[random].transform.position, shotPoints[random].transform.rotation);
-        bullet.GetComponent<Rigidbody2D>().AddForce(shotPoints[random].up * fireForce, ForceMode2D.Impulse);
+        //bullet.GetComponent<Rigidbody2D>().AddForce(shotPoints[random].up * fireForce, ForceMode2D.Impulse);
     }
 
     private IEnumerator FireRate()
@@ -54,11 +54,19 @@ public class Minigun : MonoBehaviour
 
     public void CanFire()
     {
-        canFire = true;
+        if (!canFire)
+        {
+            canFire = true;
+            StartCoroutine(FireRate());
+        }
     }
     public void CanNotFire()
     {
-        canFire = false;
+        if (canFire)
+        {
+            canFire = false;
+            StopAllCoroutines();
+        }
     }
 
     private void SetValues()

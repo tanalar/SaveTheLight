@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.Tracing;
 using UnityEngine;
 
 public class DifficultController : MonoBehaviour
@@ -41,7 +37,7 @@ public class DifficultController : MonoBehaviour
         speedMultiplier += 0.0005f;
         sizeMultiplier += 0.0005f;
         spawnRateMultiplier += 0.0005f;
-        bonfireFadeMultiplier += 0.000025f;
+        bonfireFadeMultiplier += 0.00005f;
 
         PlayerPrefs.SetFloat("enemyHpMultiplier", hpMultiplier);
         PlayerPrefs.SetFloat("enemySpeedMultiplier", speedMultiplier);

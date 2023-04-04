@@ -53,7 +53,7 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
+  m_UseAutoMass: 1
   m_Mass: 1
   m_LinearDrag: 9999
   m_AngularDrag: 9999
@@ -92,6 +92,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyFollow: {fileID: 0}
+  circleCollider: {fileID: 7116782427964720406}
 --- !u!114 &6785327743092332251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,6 +216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb2d: {fileID: 506427549304980822}
+  strength: 10
   OnBegin:
     m_PersistentCalls:
       m_Calls:

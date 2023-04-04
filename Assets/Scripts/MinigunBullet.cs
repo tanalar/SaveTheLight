@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PoolObject))]
@@ -7,11 +6,17 @@ using UnityEngine;
 public class MinigunBullet : MonoBehaviour
 {
     private float damage;
+    private float fireForce;
     private PoolObject poolObject;
 
     private void Start()
     {
         poolObject = GetComponent<PoolObject>();
+    }
+
+    private void Update()
+    {
+        transform.Translate(Vector2.up * fireForce * Time.deltaTime);
     }
 
     private void OnEnable()
@@ -42,6 +47,7 @@ public class MinigunBullet : MonoBehaviour
     private void SetValues()
     {
         damage = PlayerPrefs.GetFloat("minigunDamage");
+        fireForce = 5 + (8 * damage);
     }
 
     private IEnumerator Destroy()

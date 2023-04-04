@@ -27,13 +27,13 @@ public class EnemySpawner : MonoBehaviour
     {
         Bonfire.onPlayerCanSee += RageOff;
         Bonfire.onPlayerCanNotSee += RageOn;
-        Values.onSetValues += SetDelay;
+        Enemy.onDeath += SetDelay;
     }
     private void OnDisable()
     {
         Bonfire.onPlayerCanSee -= RageOff;
         Bonfire.onPlayerCanNotSee -= RageOn;
-        Values.onSetValues -= SetDelay;
+        Enemy.onDeath -= SetDelay;
     }
 
     private EnemyData GetSpawnedEnemy()
@@ -86,6 +86,15 @@ public class EnemySpawner : MonoBehaviour
                         //enemyGameObject = Instantiate(enemyPrefab, spawnPoint[randomSpawnPoint].position, Quaternion.identity);
                         enemyGameObject = pool.GetFreeElement(spawnPoint[randomSpawnPoint].position, Quaternion.identity);
                         enemyGameObject.GetComponent<Enemy>().SetValues(spawnedEnemy);
+
+                        if (randomCount <= 5)
+                        {
+                            randomSpawnPoint = Random.Range(0, spawnPoint.Count);
+                            spawnedEnemy = GetSpawnedEnemy();
+                            //enemyGameObject = Instantiate(enemyPrefab, spawnPoint[randomSpawnPoint].position, Quaternion.identity);
+                            enemyGameObject = pool.GetFreeElement(spawnPoint[randomSpawnPoint].position, Quaternion.identity);
+                            enemyGameObject.GetComponent<Enemy>().SetValues(spawnedEnemy);
+                        }
                     }
                 }
             }
@@ -131,7 +140,7 @@ public class EnemySpawner : MonoBehaviour
     private void RageOn()
     {
         rage = true;
-        delay = 1.25f;
+        delay = 1f;
     }
 
     private void RageOff()
@@ -142,7 +151,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void SetDelay()
     {
-        if(delay > 1)
+        if(delay >= 1 && !rage)
         {
             delay = 4 - PlayerPrefs.GetFloat("enemySpawnRateMultiplier");
         }

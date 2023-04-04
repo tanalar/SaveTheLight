@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Values : MonoBehaviour
@@ -56,7 +54,7 @@ public class Values : MonoBehaviour
         PlayerPrefs.SetFloat("aoeRadius", 0.75f);
 
         //Minigun
-        PlayerPrefs.SetFloat("minigunFireForce", 7.5f);
+        //PlayerPrefs.SetFloat("minigunFireForce", 7.5f);
         PlayerPrefs.SetFloat("minigunFireRate", 0);
         PlayerPrefs.SetFloat("minigunDamage", 0.075f);
 

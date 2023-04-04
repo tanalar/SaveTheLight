@@ -1,15 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
-using Unity.Mathematics;
-using UnityEditor.Rendering;
 
 [RequireComponent(typeof(PoolObject))]
 
 public class Enemy : MonoBehaviour
 {
     [SerializeField] EnemyFollow enemyFollow;
+    [SerializeField] CircleCollider2D circleCollider;
     private float hp;
     private float fullHp;
     private EnemyData data;
@@ -22,6 +19,7 @@ public class Enemy : MonoBehaviour
     {
         poolObject = GetComponent<PoolObject>();
         enemyFollow = GetComponent<EnemyFollow>();
+        circleCollider = GetComponent<CircleCollider2D>();
     }
 
     public void TakeDamage(float damage)
@@ -30,6 +28,10 @@ public class Enemy : MonoBehaviour
         {
             hp -= damage;
             onHp?.Invoke(hp, fullHp);
+        }
+        if (hp <= 0)
+        {
+            circleCollider.enabled= false;
         }
     }
 
@@ -50,6 +52,7 @@ public class Enemy : MonoBehaviour
         onDeath?.Invoke();
         //Destroy(gameObject);
         enemyFollow.enabled = true;
+        circleCollider.enabled = true;
         poolObject.ReturnToPool();
     }
 }

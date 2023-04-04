@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySize : MonoBehaviour
@@ -10,7 +8,7 @@ public class EnemySize : MonoBehaviour
     private float current;
     private float to;
     private bool switcher = false;
-    private float sizeChangerSpeed = 600;
+    private float sizeChangerSpeed = 550;
 
     private void OnEnable()
     {

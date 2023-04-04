@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
 public class Flame : MonoBehaviour
 {
@@ -101,11 +99,17 @@ public class Flame : MonoBehaviour
 
     public void CanFire()
     {
-        canFire = true;
+        if (!canFire)
+        {
+            canFire = true;
+        }
     }
     public void CanNotFire()
     {
-        canFire = false;
+        if (canFire)
+        {
+            canFire = false;
+        }
     }
 
     private void SetValues()
