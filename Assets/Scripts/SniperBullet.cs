@@ -1,14 +1,33 @@
+using System.Collections;
 using UnityEngine;
+
+[RequireComponent(typeof(PoolObject))]
 
 public class SniperBullet : MonoBehaviour
 {
-    private float damage = 3;
-    private float knockback = 10000;
+    [SerializeField]private float damage;
+    [SerializeField]private float knockback;
+    [SerializeField]private float fireForce;
+    private PoolObject poolObject;
 
     private void Start()
     {
-        //damage = PlayerPrefs.GetFloat("playerDamage");
-        //knockback = 100 * PlayerPrefs.GetFloat("playerFireForce");
+        poolObject = GetComponent<PoolObject>();
+    }
+
+    private void Update()
+    {
+        transform.Translate(Vector2.up * fireForce * Time.deltaTime);
+    }
+
+    private void OnEnable()
+    {
+        SetValues();
+        StartCoroutine("Destroy");
+    }
+    private void OnDisable()
+    {
+        StopCoroutine("Destroy");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -20,11 +39,26 @@ public class SniperBullet : MonoBehaviour
         if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemyComponent))
         {
             enemyComponent.TakeDamage(damage);
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            poolObject.ReturnToPool();
         }
         if (collision.gameObject.tag == "Wall")
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            poolObject.ReturnToPool();
         }
+    }
+
+    private void SetValues()
+    {
+        damage = PlayerPrefs.GetFloat("sniperDamage");
+        knockback = PlayerPrefs.GetFloat("sniperKnockback");
+        fireForce = 30 + (PlayerPrefs.GetFloat("sniperFireRate") * 65);
+    }
+
+    private IEnumerator Destroy()
+    {
+        yield return new WaitForSeconds(2);
+        poolObject.ReturnToPool();
     }
 }

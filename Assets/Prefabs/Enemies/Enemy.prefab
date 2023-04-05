@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 926706261041267972}
   - component: {fileID: 3502014946275929081}
   - component: {fileID: 7042851510339314049}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Enemy
   m_TagString: Invisible
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 1
+  m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 9999
   m_AngularDrag: 9999
@@ -216,7 +216,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb2d: {fileID: 506427549304980822}
-  strength: 10
   OnBegin:
     m_PersistentCalls:
       m_Calls:

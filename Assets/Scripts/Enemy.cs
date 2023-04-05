@@ -29,10 +29,10 @@ public class Enemy : MonoBehaviour
             hp -= damage;
             onHp?.Invoke(hp, fullHp);
         }
-        if (hp <= 0)
-        {
-            circleCollider.enabled= false;
-        }
+        //if (hp <= 0)
+        //{
+        //    circleCollider.enabled= false;
+        //}
     }
 
     public void SetValues(EnemyData randomData)
@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
         onDeath?.Invoke();
         //Destroy(gameObject);
         enemyFollow.enabled = true;
-        circleCollider.enabled = true;
+        //circleCollider.enabled = true;
         poolObject.ReturnToPool();
     }
 }

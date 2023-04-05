@@ -10,7 +10,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private List<Transform> closedShotPoints;
     //[SerializeField] private GameObject bulletPrefab;
     [SerializeField] private CircleCollider2D fireRange1;
-    //[SerializeField] private CircleCollider2D fireRange2;
+    [SerializeField] private CircleCollider2D fireRange2;
     //private float fireForce;
     private float fireRate;
     private bool canFire = false;
@@ -39,7 +39,7 @@ public class Gun : MonoBehaviour
     {
         for (int i = 0; i < shotPoints.Count; i++)
         {
-            PoolObject bullet = pool.GetFreeElement(shotPoints[i].transform.position, shotPoints[i].transform.rotation);
+            pool.GetFreeElement(shotPoints[i].transform.position, shotPoints[i].transform.rotation);
             //GameObject bullet = Instantiate(bulletPrefab, shotPoints[i].transform.position, shotPoints[i].transform.rotation);
             //bullet.GetComponent<Rigidbody2D>().AddForce(shotPoints[i].up * fireForce, ForceMode2D.Impulse);
         }
@@ -87,8 +87,7 @@ public class Gun : MonoBehaviour
     private void SetValues()
     {
         fireRange1.radius = PlayerPrefs.GetFloat("playerFireRange");
-        //fireRange2.radius = fireRange1.radius / 2;
-        float prefsRate = PlayerPrefs.GetFloat("playerFireRate");
-        fireRate = 0.5f - prefsRate;
+        fireRange2.radius = fireRange1.radius / 2;
+        fireRate = 0.5f - PlayerPrefs.GetFloat("playerFireRate");
     }
 }

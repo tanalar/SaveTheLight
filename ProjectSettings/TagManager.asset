@@ -18,19 +18,19 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Bullet
+  - Flame
+  - MinigunBullet
+  - Laser
+  - Aoe
+  - SniperBullet
+  - Player
+  - Enemy
+  - Energy
+  - Magnet
+  - Bonfire
+  - EnergyStorage
+  - Wall
   - 
   - 
   - 

@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 1734857038439074391}
   - component: {fileID: 8978792525497667742}
   - component: {fileID: 7981956536546946205}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Energy
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1,20 +1,24 @@
 using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(Pool))]
+
 public class Sniper : MonoBehaviour
 {
     [SerializeField] private Transform shotPoint;
-    [SerializeField] private GameObject bulletPrefab;
+    //[SerializeField] private GameObject bulletPrefab;
     [SerializeField] private SpriteRenderer logo;
-    private float fireForce = 50;
-    private float fireRate = 0.25f;
+    //private float fireForce = 50;
+    [SerializeField]private float fireRate = 0.25f;
     private bool canFire = false;
     private float minLoad = 0;
     private float currentLoad = 0;
     private float maxLoad = 1;
+    private Pool pool;
 
     private void Start()
     {
+        pool = GetComponent<Pool>();
         SetValues();
         StartCoroutine(FireRate());
     }
@@ -34,8 +38,9 @@ public class Sniper : MonoBehaviour
 
     private void Fire()
     {
-        GameObject bullet = Instantiate(bulletPrefab, shotPoint.transform.position, shotPoint.transform.rotation);
-        bullet.GetComponent<Rigidbody2D>().AddForce(shotPoint.up * fireForce, ForceMode2D.Impulse);
+        pool.GetFreeElement(shotPoint.transform.position, shotPoint.transform.rotation);
+        //GameObject bullet = Instantiate(bulletPrefab, shotPoint.transform.position, shotPoint.transform.rotation);
+        //bullet.GetComponent<Rigidbody2D>().AddForce(shotPoint.up * fireForce, ForceMode2D.Impulse);
         currentLoad = minLoad;
         logo.color = new Color(logo.color.r, logo.color.g, logo.color.b, currentLoad);
     }
@@ -73,7 +78,6 @@ public class Sniper : MonoBehaviour
     private void SetValues()
     {
         //fireForce = PlayerPrefs.GetFloat("minigunFireForce");
-        //float prefsRate = PlayerPrefs.GetFloat("minigunFireRate");
-        //fireRate = 0.15f - prefsRate;
+        fireRate = 0.25f - PlayerPrefs.GetFloat("sniperFireRate");
     }
 }

@@ -8,7 +8,7 @@ public class Minigun : MonoBehaviour
 {
     [SerializeField] private List<Transform> shotPoints;
     //[SerializeField] private GameObject bulletPrefab;
-    private float fireForce;
+    //private float fireForce;
     private float fireRate;
     private bool canFire = false;
     private Pool pool;
@@ -36,7 +36,7 @@ public class Minigun : MonoBehaviour
     private void Fire()
     {
         int random = Random.Range(0, shotPoints.Count);
-        PoolObject bullet = pool.GetFreeElement(shotPoints[random].transform.position, shotPoints[random].transform.rotation);
+        pool.GetFreeElement(shotPoints[random].transform.position, shotPoints[random].transform.rotation);
         //GameObject bullet = Instantiate(bulletPrefab, shotPoints[random].transform.position, shotPoints[random].transform.rotation);
         //bullet.GetComponent<Rigidbody2D>().AddForce(shotPoints[random].up * fireForce, ForceMode2D.Impulse);
     }
@@ -71,8 +71,7 @@ public class Minigun : MonoBehaviour
 
     private void SetValues()
     {
-        fireForce = PlayerPrefs.GetFloat("minigunFireForce");
-        float prefsRate = PlayerPrefs.GetFloat("minigunFireRate");
-        fireRate = 0.15f - prefsRate;
+        //fireForce = PlayerPrefs.GetFloat("minigunFireForce");
+        fireRate = 0.15f - PlayerPrefs.GetFloat("minigunFireRate");
     }
 }

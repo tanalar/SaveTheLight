@@ -47,7 +47,7 @@ public class MinigunBullet : MonoBehaviour
     private void SetValues()
     {
         damage = PlayerPrefs.GetFloat("minigunDamage");
-        fireForce = 5 + (8 * damage);
+        fireForce = 7 + (PlayerPrefs.GetFloat("minigunFireRate") * 65);
     }
 
     private IEnumerator Destroy()

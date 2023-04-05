@@ -35,10 +35,10 @@ public class FindClosestEnemy : MonoBehaviour
             //    enemies.RemoveAt(i);
             //    i = 0;
             //}
-            if (enemies[i].gameObject.activeInHierarchy == false)
-            {
-                enemies.RemoveAt(i);
-            }
+            //if (enemies[i].gameObject.activeInHierarchy == false)
+            //{
+            //    enemies.RemoveAt(i);
+            //}
             if (enemies[i].gameObject.tag == "Visible" && enemies[i] != null)
             {
                 Vector3 diff = enemies[i].transform.position - position;

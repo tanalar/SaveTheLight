@@ -35,7 +35,7 @@ public class Values : MonoBehaviour
         PlayerPrefs.SetFloat("playerMaxHp", 100);
         PlayerPrefs.SetFloat("playerSpeed", 5);
         PlayerPrefs.SetFloat("playerFireRange", 5);
-        PlayerPrefs.SetFloat("playerFireForce", 10);
+        PlayerPrefs.SetFloat("playerKnockback", 0);
         PlayerPrefs.SetFloat("playerFireRate", 0);
         PlayerPrefs.SetFloat("playerDamage", 1);
 
@@ -57,6 +57,11 @@ public class Values : MonoBehaviour
         //PlayerPrefs.SetFloat("minigunFireForce", 7.5f);
         PlayerPrefs.SetFloat("minigunFireRate", 0);
         PlayerPrefs.SetFloat("minigunDamage", 0.075f);
+
+        //Sniper
+        PlayerPrefs.SetFloat("sniperKnockback", 0);
+        PlayerPrefs.SetFloat("sniperFireRate", 0);
+        PlayerPrefs.SetFloat("sniperDamage", 3);
 
         onSetValues?.Invoke();
     }

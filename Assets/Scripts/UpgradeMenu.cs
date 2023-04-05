@@ -16,6 +16,7 @@ public class UpgradeMenu : MonoBehaviour
     [SerializeField] private GameObject laserUpgradeMenu;
     [SerializeField] private GameObject aoeUpgradeMenu;
     [SerializeField] private GameObject minigunUpgradeMenu;
+    [SerializeField] private GameObject sniperUpgradeMenu;
 
     public bool pauseGame = false;
 
@@ -85,5 +86,11 @@ public class UpgradeMenu : MonoBehaviour
     {
         selectionMenu.SetActive(false);
         minigunUpgradeMenu.SetActive(true);
+    }
+
+    public void SniperUpgradeMenu()
+    {
+        selectionMenu.SetActive(false);
+        sniperUpgradeMenu.SetActive(true);
     }
 }

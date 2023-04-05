@@ -132,8 +132,7 @@ public class Laser : MonoBehaviour
     private void SetValues()
     {
         fireRate = PlayerPrefs.GetFloat("laserFireRate");
-        float prefsFireDuration = PlayerPrefs.GetFloat("laserFireDuration");
-        fireDuration = 0.02f - prefsFireDuration;
+        fireDuration = 0.02f - PlayerPrefs.GetFloat("laserFireDuration");
         damage = PlayerPrefs.GetFloat("laserDamage");
     }
 }

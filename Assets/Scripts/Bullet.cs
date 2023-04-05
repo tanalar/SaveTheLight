@@ -52,8 +52,8 @@ public class Bullet : MonoBehaviour
     private void SetValues()
     {
         damage = PlayerPrefs.GetFloat("playerDamage");
-        knockback = 325 * (PlayerPrefs.GetFloat("playerFireForce") - 10);
-        fireForce = PlayerPrefs.GetFloat("playerFireForce");
+        knockback = PlayerPrefs.GetFloat("playerKnockback");
+        fireForce = 12.5f + (PlayerPrefs.GetFloat("playerFireRate") * 40);
     }
 
     private IEnumerator Destroy()

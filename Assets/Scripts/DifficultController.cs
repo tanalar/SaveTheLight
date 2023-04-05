@@ -37,7 +37,7 @@ public class DifficultController : MonoBehaviour
         speedMultiplier += 0.0005f;
         sizeMultiplier += 0.0005f;
         spawnRateMultiplier += 0.0005f;
-        bonfireFadeMultiplier += 0.00005f;
+        bonfireFadeMultiplier += 0.0001f;
 
         PlayerPrefs.SetFloat("enemyHpMultiplier", hpMultiplier);
         PlayerPrefs.SetFloat("enemySpeedMultiplier", speedMultiplier);
