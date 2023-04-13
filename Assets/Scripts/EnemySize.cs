@@ -9,6 +9,12 @@ public class EnemySize : MonoBehaviour
     private float to;
     private bool switcher = false;
     private float sizeChangerSpeed = 550;
+    private Enemy enemy;
+
+    private void Start()
+    {
+        enemy = GetComponent<Enemy>();
+    }
 
     private void OnEnable()
     {
@@ -24,7 +30,7 @@ public class EnemySize : MonoBehaviour
     {
         if (current <= min)
         {
-            GetComponent<Enemy>().Death();
+            enemy.Death();
         }
         if (switcher)
         {
@@ -45,7 +51,6 @@ public class EnemySize : MonoBehaviour
     {
         to = max - ((max - min) / fullHp * (fullHp - hp));
         switcher = true;
-        //transform.localScale = new Vector3(to, to, to);
     }
 
     public void SetSize(float from, float to)

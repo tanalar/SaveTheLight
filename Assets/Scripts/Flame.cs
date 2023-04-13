@@ -28,15 +28,13 @@ public class Flame : MonoBehaviour
 
     private void OnEnable()
     {
-        FindClosestEnemy.onNotEmpty += CanFire;
-        FindClosestEnemy.onEmpty += CanNotFire;
         Values.onSetValues += SetValues;
+        PlayerController.onShoot += CanFire;
     }
     private void OnDisable()
     {
-        FindClosestEnemy.onNotEmpty -= CanFire;
-        FindClosestEnemy.onEmpty -= CanNotFire;
         Values.onSetValues -= SetValues;
+        PlayerController.onShoot -= CanFire;
     }
 
     void Start()
@@ -97,19 +95,10 @@ public class Flame : MonoBehaviour
         }
     }
 
-    public void CanFire()
+    public void CanFire(bool canShoot)
     {
-        if (!canFire)
-        {
-            canFire = true;
-        }
-    }
-    public void CanNotFire()
-    {
-        if (canFire)
-        {
-            canFire = false;
-        }
+        canFire = canShoot;
+
     }
 
     private void SetValues()

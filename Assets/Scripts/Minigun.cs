@@ -7,8 +7,6 @@ using UnityEngine;
 public class Minigun : MonoBehaviour
 {
     [SerializeField] private List<Transform> shotPoints;
-    //[SerializeField] private GameObject bulletPrefab;
-    //private float fireForce;
     private float fireRate;
     private bool canFire = false;
     private Pool pool;
@@ -17,28 +15,23 @@ public class Minigun : MonoBehaviour
     {
         pool = GetComponent<Pool>();
         SetValues();
-        //StartCoroutine(FireRate());
     }
 
     private void OnEnable()
     {
-        FindClosestEnemy.onNotEmpty += CanFire;
-        FindClosestEnemy.onEmpty += CanNotFire;
         Values.onSetValues += SetValues;
+        PlayerController.onShoot += CanFire;
     }
     private void OnDisable()
     {
-        FindClosestEnemy.onNotEmpty -= CanFire;
-        FindClosestEnemy.onEmpty -= CanNotFire;
         Values.onSetValues -= SetValues;
+        PlayerController.onShoot -= CanFire;
     }
 
     private void Fire()
     {
         int random = Random.Range(0, shotPoints.Count);
         pool.GetFreeElement(shotPoints[random].transform.position, shotPoints[random].transform.rotation);
-        //GameObject bullet = Instantiate(bulletPrefab, shotPoints[random].transform.position, shotPoints[random].transform.rotation);
-        //bullet.GetComponent<Rigidbody2D>().AddForce(shotPoints[random].up * fireForce, ForceMode2D.Impulse);
     }
 
     private IEnumerator FireRate()
@@ -52,26 +45,21 @@ public class Minigun : MonoBehaviour
         StartCoroutine(FireRate());
     }
 
-    public void CanFire()
+    public void CanFire(bool canShoot)
     {
-        if (!canFire)
-        {
-            canFire = true;
-            StartCoroutine(FireRate());
-        }
-    }
-    public void CanNotFire()
-    {
+        canFire = canShoot;
         if (canFire)
         {
-            canFire = false;
+            StartCoroutine(FireRate());
+        }
+        if (!canFire)
+        {
             StopAllCoroutines();
         }
     }
 
     private void SetValues()
     {
-        //fireForce = PlayerPrefs.GetFloat("minigunFireForce");
         fireRate = 0.15f - PlayerPrefs.GetFloat("minigunFireRate");
     }
 }

@@ -4,19 +4,16 @@ public class EnemyFollow : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     private float speed;
-    //private float distance;
     private float rageMultiplier = 1;
     private float aoeMultiplier = 1;
 
     private void OnEnable()
     {
-        Bonfire.onPlayerCanSee += RageOff;
-        Bonfire.onPlayerCanNotSee += RageOn;
+        Bonfire.onPlayerCanSee += Rage;
     }
     private void OnDisable()
     {
-        Bonfire.onPlayerCanSee -= RageOff;
-        Bonfire.onPlayerCanNotSee -= RageOn;
+        Bonfire.onPlayerCanSee += Rage;
     }
 
     private void Start()
@@ -26,9 +23,6 @@ public class EnemyFollow : MonoBehaviour
 
     private void Update()
     {
-        //distance = Vector2.Distance(transform.position, player.transform.position);
-        //Vector2 direction = player.transform.position - transform.position;
-
         transform.position = Vector2.MoveTowards(transform.position, player.transform.position, (speed * rageMultiplier * aoeMultiplier) * Time.deltaTime);
     }
 
@@ -38,13 +32,16 @@ public class EnemyFollow : MonoBehaviour
         this.speed = speed * PlayerPrefs.GetFloat("enemySpeedMultiplier") * randomMultiplier;
     }
 
-    private void RageOn()
+    private void Rage(bool canSee)
     {
-        rageMultiplier = 1.25f;
-    }
-    private void RageOff()
-    {
-        rageMultiplier = 1;
+        if (canSee == true)
+        {
+            rageMultiplier = 1;
+        }
+        if(canSee == false)
+        {
+            rageMultiplier = 1.5f;
+        }
     }
 
     public void SetAoeMultiplier(float multiplier)

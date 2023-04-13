@@ -1,32 +1,35 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private FixedJoystick joystick;
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private FindClosestEnemy closestEnemy;
+    private FindClosestEnemy closestEnemy;
     private float speed;
     private Vector2 move;
     private bool canSee = true;
+    private bool canShoot = false;
 
     public static bool PointerDown = false;
+    public static Action<bool> onShoot;
+
 
     private void Start()
     {
-        speed = PlayerPrefs.GetFloat("playerSpeed");
+        SetValues();
+        closestEnemy = GetComponent<FindClosestEnemy>();
     }
 
     private void OnEnable()
     {
         Bonfire.onPlayerCanSee += CanSee;
-        Bonfire.onPlayerCanNotSee += CanNotSee;
-        Values.onSetValues += SetValue;
+        Values.onSetValues += SetValues;
     }
     private void OnDisable()
     {
         Bonfire.onPlayerCanSee -= CanSee;
-        Bonfire.onPlayerCanNotSee -= CanNotSee;
-        Values.onSetValues -= SetValue;
+        Values.onSetValues -= SetValues;
     }
 
     private void Update()
@@ -42,6 +45,11 @@ public class PlayerController : MonoBehaviour
             float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - 90;
             Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
             transform.rotation = q;
+            if(canShoot == false)
+            {
+                canShoot = true;
+                onShoot?.Invoke(canShoot);
+            }
         }
         else 
         {
@@ -49,6 +57,11 @@ public class PlayerController : MonoBehaviour
             float vAxis = move.y;
             float zAxis = Mathf.Atan2(hAxis, vAxis) * Mathf.Rad2Deg;
             transform.eulerAngles = new Vector3(0f, 0f, -zAxis);
+            if(canShoot == true)
+            {
+                canShoot = false;
+                onShoot?.Invoke(canShoot);
+            }
         }
     }
 
@@ -65,16 +78,12 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void CanSee()
+    private void CanSee(bool canSee)
     {
-        canSee = true;
-    }
-    private void CanNotSee()
-    {
-        canSee = false;
+        this.canSee = canSee;
     }
 
-    private void SetValue()
+    private void SetValues()
     {
         speed = PlayerPrefs.GetFloat("playerSpeed");
     }

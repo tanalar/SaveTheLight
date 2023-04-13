@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 1, g: 0.8235294, b: 0, a: 1}
   dropChance: 1
-  scaleMultiplier: 1.4
+  scale: 1.4
   value: 100

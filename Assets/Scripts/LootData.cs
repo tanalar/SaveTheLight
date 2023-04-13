@@ -5,6 +5,6 @@ public class LootData : ScriptableObject
 {
     public Color color;
     public int dropChance;
-    public float scaleMultiplier;
+    public float scale;
     public int value;
 }

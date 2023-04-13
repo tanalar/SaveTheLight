@@ -8,10 +8,8 @@ public class Gun : MonoBehaviour
 {
     [SerializeField] private List<Transform> shotPoints;
     [SerializeField] private List<Transform> closedShotPoints;
-    //[SerializeField] private GameObject bulletPrefab;
     [SerializeField] private CircleCollider2D fireRange1;
     [SerializeField] private CircleCollider2D fireRange2;
-    //private float fireForce;
     private float fireRate;
     private bool canFire = false;
     private Pool pool;
@@ -24,15 +22,13 @@ public class Gun : MonoBehaviour
 
     private void OnEnable()
     {
-        FindClosestEnemy.onNotEmpty += CanFire;
-        FindClosestEnemy.onEmpty += CanNotFire;
         Values.onSetValues += SetValues;
+        PlayerController.onShoot += CanFire;
     }
     private void OnDisable()
     {
-        FindClosestEnemy.onNotEmpty -= CanFire;
-        FindClosestEnemy.onEmpty -= CanNotFire;
         Values.onSetValues -= SetValues;
+        PlayerController.onShoot -= CanFire;
     }
 
     public void Fire()
@@ -40,8 +36,6 @@ public class Gun : MonoBehaviour
         for (int i = 0; i < shotPoints.Count; i++)
         {
             pool.GetFreeElement(shotPoints[i].transform.position, shotPoints[i].transform.rotation);
-            //GameObject bullet = Instantiate(bulletPrefab, shotPoints[i].transform.position, shotPoints[i].transform.rotation);
-            //bullet.GetComponent<Rigidbody2D>().AddForce(shotPoints[i].up * fireForce, ForceMode2D.Impulse);
         }
     }
 
@@ -55,31 +49,15 @@ public class Gun : MonoBehaviour
         StartCoroutine(FireRate());
     }
 
-    //public void GunUnlock()
-    //{
-    //    shotPoints.Add(closedShotPoints[0]);
-    //    shotPoints.Add(closedShotPoints[1]);
-    //    closedShotPoints.RemoveAt(0);
-    //    closedShotPoints.RemoveAt(0);
-    //}
-    //public void GunFireRate()
-    //{
-    //    fireRate /= 1.2f;
-    //}
-
-    public void CanFire()
+    public void CanFire(bool canShoot)
     {
-        if (!canFire)
-        {
-            canFire = true;
-            StartCoroutine(FireRate());
-        }
-    }
-    public void CanNotFire()
-    {
+        canFire = canShoot;
         if (canFire)
         {
-            canFire = false;
+            StartCoroutine(FireRate());
+        }
+        if (!canFire)
+        {
             StopAllCoroutines();
         }
     }

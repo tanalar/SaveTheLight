@@ -34,12 +34,10 @@ public class MinigunBullet : MonoBehaviour
         if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemyComponent))
         {
             enemyComponent.TakeDamage(damage);
-            //Destroy(gameObject);
             poolObject.ReturnToPool();
         }
         if (collision.gameObject.tag == "Wall")
         {
-            //Destroy(gameObject);
             poolObject.ReturnToPool();
         }
     }

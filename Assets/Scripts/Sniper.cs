@@ -6,9 +6,7 @@ using UnityEngine;
 public class Sniper : MonoBehaviour
 {
     [SerializeField] private Transform shotPoint;
-    //[SerializeField] private GameObject bulletPrefab;
     [SerializeField] private SpriteRenderer logo;
-    //private float fireForce = 50;
     [SerializeField]private float fireRate = 0.25f;
     private bool canFire = false;
     private float minLoad = 0;
@@ -25,22 +23,18 @@ public class Sniper : MonoBehaviour
 
     private void OnEnable()
     {
-        FindClosestEnemy.onNotEmpty += CanFire;
-        FindClosestEnemy.onEmpty += CanNotFire;
         Values.onSetValues += SetValues;
+        PlayerController.onShoot += CanFire;
     }
     private void OnDisable()
     {
-        FindClosestEnemy.onNotEmpty -= CanFire;
-        FindClosestEnemy.onEmpty -= CanNotFire;
         Values.onSetValues -= SetValues;
+        PlayerController.onShoot -= CanFire;
     }
 
     private void Fire()
     {
         pool.GetFreeElement(shotPoint.transform.position, shotPoint.transform.rotation);
-        //GameObject bullet = Instantiate(bulletPrefab, shotPoint.transform.position, shotPoint.transform.rotation);
-        //bullet.GetComponent<Rigidbody2D>().AddForce(shotPoint.up * fireForce, ForceMode2D.Impulse);
         currentLoad = minLoad;
         logo.color = new Color(logo.color.r, logo.color.g, logo.color.b, currentLoad);
     }
@@ -60,24 +54,13 @@ public class Sniper : MonoBehaviour
         StartCoroutine(FireRate());
     }
 
-    public void CanFire()
+    public void CanFire(bool canShoot)
     {
-        if (!canFire)
-        {
-            canFire = true;
-        }
-    }
-    public void CanNotFire()
-    {
-        if (canFire)
-        {
-            canFire = false;
-        }
+        canFire = canShoot;
     }
 
     private void SetValues()
     {
-        //fireForce = PlayerPrefs.GetFloat("minigunFireForce");
         fireRate = 0.25f - PlayerPrefs.GetFloat("sniperFireRate");
     }
 }

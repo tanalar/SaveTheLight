@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
 {
     private float fireForce;
     private float damage;
-    [SerializeField]private float knockback;
+    private float knockback;
     private PoolObject poolObject;
 
     private void Start()
@@ -39,12 +39,10 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemyComponent))
         {
             enemyComponent.TakeDamage(damage);
-            //Destroy(gameObject);
             poolObject.ReturnToPool();
         }
         if(collision.gameObject.tag == "Wall")
         {
-            //Destroy(gameObject);
             poolObject.ReturnToPool();
         }
     }

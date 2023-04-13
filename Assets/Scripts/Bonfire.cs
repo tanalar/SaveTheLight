@@ -10,9 +10,7 @@ public class Bonfire : MonoBehaviour
     [SerializeField] private CircleCollider2D circleCollider;
 
     public static Action onEnemyVisible;
-    public static Action onEnemyInvisible;
-    public static Action onPlayerCanSee;
-    public static Action onPlayerCanNotSee;
+    public static Action<bool> onPlayerCanSee;
 
     private void OnEnable()
     {
@@ -64,7 +62,7 @@ public class Bonfire : MonoBehaviour
 
         if(collision.gameObject.tag == "Player")
         {
-            onPlayerCanSee?.Invoke();
+            onPlayerCanSee?.Invoke(true);
         }
     }
 
@@ -73,12 +71,12 @@ public class Bonfire : MonoBehaviour
         if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemyComponent))
         {
             enemyComponent.tag = "Invisible";
-            onEnemyInvisible?.Invoke();
+            onEnemyVisible?.Invoke();
         }
 
         if (collision.gameObject.tag == "Player")
         {
-            onPlayerCanNotSee?.Invoke();
+            onPlayerCanSee?.Invoke(false);
         }
     }
 

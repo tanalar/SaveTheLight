@@ -12,10 +12,12 @@ public class Aoe : MonoBehaviour
     private float maxTransparency = 0.2f;
     private float damage;
     private float slowdownMultiplier;
+    private bool canSee = true;
 
     private void OnEnable()
     {
         Values.onSetValues += SetValues;
+        Bonfire.onPlayerCanSee += CanSee;
     }
     private void OnDisable()
     {
@@ -77,7 +79,7 @@ public class Aoe : MonoBehaviour
 
     private void DealDamage()
     {
-        if (list.Count > 0)
+        if (list.Count > 0 && canSee)
         {
             for (int i = 0; i < list.Count; i++)
             {
@@ -96,5 +98,10 @@ public class Aoe : MonoBehaviour
         slowdownMultiplier = 1 - prefsSlowdownMultiplier;
         float radius = PlayerPrefs.GetFloat("aoeRadius");
         transform.localScale = new Vector3(radius, radius, radius);
+    }
+
+    private void CanSee(bool canSee)
+    {
+        this.canSee = canSee;
     }
 }

@@ -1,6 +1,9 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
+
+[RequireComponent(typeof(PoolObject))]
 
 public class Energy : MonoBehaviour
 {
@@ -9,11 +12,18 @@ public class Energy : MonoBehaviour
     private float speed = 3;
     private bool follow = false;
     private int value;
-    private float a = 1;
+    private float a;
+    private PoolObject poolObject;
 
     public static Action<int> onDestroy;
 
     private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        poolObject = GetComponent<PoolObject>();
+    }
+
+    private void OnEnable()
     {
         StartCoroutine(Destroy());
     }
@@ -21,8 +31,10 @@ public class Energy : MonoBehaviour
     public void SetValues(LootData data)
     {
         value = data.value;
-        transform.localScale = new Vector3(transform.localScale.x * data.scaleMultiplier, transform.localScale.y * data.scaleMultiplier, transform.localScale.z * data.scaleMultiplier);
+        transform.localScale = new Vector3(data.scale, data.scale, data.scale);
         energyTexture.color = data.color;
+        a = 1;
+        energyTexture.color = new Color(energyTexture.color.r, energyTexture.color.g, energyTexture.color.b, a);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -30,12 +42,11 @@ public class Energy : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             onDestroy?.Invoke(value);
-            Destroy(gameObject);
+            poolObject.ReturnToPool();
         }
         if(collision.gameObject.tag == "Magnet")
         {
             follow = true;
-            player = GameObject.FindGameObjectWithTag("Player");
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -46,7 +57,7 @@ public class Energy : MonoBehaviour
         }
         if(collision.gameObject.tag == "Bonfire")
         {
-            Destroy(gameObject);
+            poolObject.ReturnToPool();
         }
     }
 
@@ -60,13 +71,17 @@ public class Energy : MonoBehaviour
 
     private IEnumerator Destroy()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.15f);
         a -= 0.01f;
         energyTexture.color = new Color(energyTexture.color.r, energyTexture.color.g, energyTexture.color.b, a);
         if(a <= 0)
         {
-            Destroy(gameObject);
+            StopAllCoroutines();
+            poolObject.ReturnToPool();
         }
-        StartCoroutine(Destroy());
+        if(gameObject.activeInHierarchy == true)
+        {
+            StartCoroutine(Destroy());
+        }
     }
 }

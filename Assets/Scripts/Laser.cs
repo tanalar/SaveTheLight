@@ -6,7 +6,6 @@ public class Laser : MonoBehaviour
 {
     [SerializeField] private GameObject laserTexture;
     [SerializeField] private SpriteRenderer laserSprite;
-
     [SerializeField] private List<Enemy> list;
 
     private float fireRate;
@@ -30,15 +29,13 @@ public class Laser : MonoBehaviour
 
     private void OnEnable()
     {
-        FindClosestEnemy.onNotEmpty += CanFire;
-        FindClosestEnemy.onEmpty += CanNotFire;
         Values.onSetValues += SetValues;
+        PlayerController.onShoot += CanFire;
     }
     private void OnDisable()
     {
-        FindClosestEnemy.onNotEmpty -= CanFire;
-        FindClosestEnemy.onEmpty -= CanNotFire;
         Values.onSetValues -= SetValues;
+        PlayerController.onShoot -= CanFire;
     }
 
     private void Start()
@@ -99,19 +96,10 @@ public class Laser : MonoBehaviour
         StartCoroutine(Delay());
     }
 
-    public void CanFire()
+    public void CanFire(bool canShoot)
     {
-        if (!canFire)
-        {
-            canFire = true;
-        }
-    }
-    public void CanNotFire()
-    {
-        if (canFire)
-        {
-            canFire = false;
-        }
+        canFire = canShoot;
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

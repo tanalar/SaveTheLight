@@ -21,12 +21,10 @@ public class SatelliteController : MonoBehaviour
     private void OnEnable()
     {
         Bonfire.onPlayerCanSee += CanSee;
-        Bonfire.onPlayerCanNotSee += CanNotSee;
     }
     private void OnDisable()
     {
         Bonfire.onPlayerCanSee -= CanSee;
-        Bonfire.onPlayerCanNotSee -= CanNotSee;
     }
 
     private void Update()
@@ -52,12 +50,8 @@ public class SatelliteController : MonoBehaviour
         }
     }
 
-    private void CanSee()
+    private void CanSee(bool canSee)
     {
-        canSee = true;
-    }
-    private void CanNotSee()
-    {
-        canSee = false;
+        this.canSee = canSee;
     }
 }

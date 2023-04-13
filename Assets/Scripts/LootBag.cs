@@ -1,10 +1,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Pool))]
+
 public class LootBag : MonoBehaviour
 {
-    [SerializeField] private GameObject droppedItemPrefab;
     [SerializeField] private List<LootData> lootList = new List<LootData>();
+    private Pool pool;
+
+    private void Start()
+    {
+        pool = GetComponent<Pool>();
+    }
+
+    private void OnEnable()
+    {
+        Enemy.onDeathPoint += InstantiateLoot;
+    }
+    private void OnDisable()
+    {
+        Enemy.onDeathPoint -= InstantiateLoot;
+    }
 
     private LootData GetDroppedItem()
     {
@@ -24,7 +40,7 @@ public class LootBag : MonoBehaviour
     public void InstantiateLoot(Vector3 spawnPosition)
     {
         LootData droppedItem = GetDroppedItem();
-        GameObject lootGameObject = Instantiate(droppedItemPrefab, spawnPosition, Quaternion.identity);
+        PoolObject lootGameObject = pool.GetFreeElement(spawnPosition, Quaternion.identity);
         lootGameObject.GetComponent<Energy>().SetValues(droppedItem);
     }
 }

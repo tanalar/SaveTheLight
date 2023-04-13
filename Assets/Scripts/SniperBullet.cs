@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class SniperBullet : MonoBehaviour
 {
-    [SerializeField]private float damage;
-    [SerializeField]private float knockback;
-    [SerializeField]private float fireForce;
+    private float damage;
+    private float knockback;
+    private float fireForce;
     private PoolObject poolObject;
 
     private void Start()
@@ -39,12 +39,10 @@ public class SniperBullet : MonoBehaviour
         if (collision.gameObject.TryGetComponent<Enemy>(out Enemy enemyComponent))
         {
             enemyComponent.TakeDamage(damage);
-            //Destroy(gameObject);
             poolObject.ReturnToPool();
         }
         if (collision.gameObject.tag == "Wall")
         {
-            //Destroy(gameObject);
             poolObject.ReturnToPool();
         }
     }

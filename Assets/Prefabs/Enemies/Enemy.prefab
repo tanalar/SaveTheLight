@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 6785327743092332251}
   - component: {fileID: 5380203966472114612}
   - component: {fileID: -8054701408880952884}
-  - component: {fileID: 3078220655041424782}
   - component: {fileID: 926706261041267972}
   - component: {fileID: 3502014946275929081}
   - component: {fileID: 7042851510339314049}
@@ -91,8 +90,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f561b1bbfd0ef684d9750ef4af3d3f22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyFollow: {fileID: 0}
-  circleCollider: {fileID: 7116782427964720406}
 --- !u!114 &6785327743092332251
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,25 +130,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 5486673220001941982}
---- !u!114 &3078220655041424782
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1750866167885607841}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6558e1d5f063824195e60f9de8973d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  droppedItemPrefab: {fileID: 5902173028914638481, guid: 11db9116ae8a19d4882d7fffbbc8d3d5, type: 3}
-  lootList:
-  - {fileID: 11400000, guid: c5c3e464f6156ab41beffa4d71c2fbc8, type: 2}
-  - {fileID: 11400000, guid: b15d7f07a5ee23744a6551ca6a9f66a0, type: 2}
-  - {fileID: 11400000, guid: 7a9c705f44531df4f88d4e5e3cb593b3, type: 2}
-  - {fileID: 11400000, guid: 6c788ea8b7f92614096b848d1f954c69, type: 2}
-  - {fileID: 11400000, guid: 2e44efa6aeaa4284f82da1bc02059323, type: 2}
 --- !u!114 &926706261041267972
 MonoBehaviour:
   m_ObjectHideFlags: 0

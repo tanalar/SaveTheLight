@@ -5,21 +5,23 @@ using System;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] EnemyFollow enemyFollow;
-    [SerializeField] CircleCollider2D circleCollider;
     private float hp;
     private float fullHp;
-    private EnemyData data;
     private PoolObject poolObject;
+    private EnemyFollow enemyFollow;
+    private EnemySize enemySize;
+    private EnemyColor enemyColor;
 
     public static Action onDeath;
+    public static Action<Vector3> onDeathPoint;
     public Action<float, float> onHp;
 
-    private void Start()
+    private void Awake()
     {
         poolObject = GetComponent<PoolObject>();
         enemyFollow = GetComponent<EnemyFollow>();
-        circleCollider = GetComponent<CircleCollider2D>();
+        enemySize = GetComponent<EnemySize>();
+        enemyColor = GetComponent<EnemyColor>();
     }
 
     public void TakeDamage(float damage)
@@ -29,30 +31,23 @@ public class Enemy : MonoBehaviour
             hp -= damage;
             onHp?.Invoke(hp, fullHp);
         }
-        //if (hp <= 0)
-        //{
-        //    circleCollider.enabled= false;
-        //}
     }
 
     public void SetValues(EnemyData randomData)
     {
-        data = randomData;
-        fullHp = data.hp * PlayerPrefs.GetFloat("enemyHpMultiplier");
+        fullHp = randomData.hp * PlayerPrefs.GetFloat("enemyHpMultiplier");
         hp = fullHp;
-        GetComponent<EnemyFollow>().SetSpeed(data.speed);
-        GetComponent<EnemySize>().SetSize(data.sizeFrom, data.sizeTo);
-        GetComponent<EnemyColor>().SetColor(data.rFrom, data.gFrom, data.bFrom, data.rTo, data.gTo, data.bTo);
+        enemyFollow.SetSpeed(randomData.speed);
+        enemySize.SetSize(randomData.sizeFrom, randomData.sizeTo);
+        enemyColor.SetColor(randomData.rFrom, randomData.gFrom, randomData.bFrom, randomData.rTo, randomData.gTo, randomData.bTo);
         onHp?.Invoke(hp, fullHp);
     }
 
     public void Death()
     {
-        GetComponent<LootBag>().InstantiateLoot(transform.position);
+        onDeathPoint?.Invoke(transform.position);
         onDeath?.Invoke();
-        //Destroy(gameObject);
         enemyFollow.enabled = true;
-        //circleCollider.enabled = true;
         poolObject.ReturnToPool();
     }
 }

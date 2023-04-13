@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    //[SerializeField] private GameObject enemyPrefab;
     [SerializeField] private List<EnemyData> enemiesList = new List<EnemyData>();
     [SerializeField] private List<Transform> spawnPoint = new List<Transform>();
     [SerializeField] private Transform player;
@@ -25,14 +24,12 @@ public class EnemySpawner : MonoBehaviour
 
     private void OnEnable()
     {
-        Bonfire.onPlayerCanSee += RageOff;
-        Bonfire.onPlayerCanNotSee += RageOn;
+        Bonfire.onPlayerCanSee += Rage;
         Enemy.onDeath += SetDelay;
     }
     private void OnDisable()
     {
-        Bonfire.onPlayerCanSee -= RageOff;
-        Bonfire.onPlayerCanNotSee -= RageOn;
+        Bonfire.onPlayerCanSee -= Rage;
         Enemy.onDeath -= SetDelay;
     }
 
@@ -59,7 +56,6 @@ public class EnemySpawner : MonoBehaviour
 
             int randomSpawnPoint = Random.Range(0, spawnPoint.Count);
             EnemyData spawnedEnemy = GetSpawnedEnemy();
-            //GameObject enemyGameObject = Instantiate(enemyPrefab, spawnPoint[randomSpawnPoint].position, Quaternion.identity);
             PoolObject enemyGameObject = pool.GetFreeElement(spawnPoint[randomSpawnPoint].position, Quaternion.identity);
             enemyGameObject.GetComponent<Enemy>().SetValues(spawnedEnemy);
 
@@ -67,7 +63,6 @@ public class EnemySpawner : MonoBehaviour
             {
                 randomSpawnPoint = Random.Range(0, spawnPoint.Count);
                 spawnedEnemy = GetSpawnedEnemy();
-                //enemyGameObject = Instantiate(enemyPrefab, spawnPoint[randomSpawnPoint].position, Quaternion.identity);
                 enemyGameObject = pool.GetFreeElement(spawnPoint[randomSpawnPoint].position, Quaternion.identity);
                 enemyGameObject.GetComponent<Enemy>().SetValues(spawnedEnemy);
 
@@ -75,7 +70,6 @@ public class EnemySpawner : MonoBehaviour
                 {
                     randomSpawnPoint = Random.Range(0, spawnPoint.Count);
                     spawnedEnemy = GetSpawnedEnemy();
-                    //enemyGameObject = Instantiate(enemyPrefab, spawnPoint[randomSpawnPoint].position, Quaternion.identity);
                     enemyGameObject = pool.GetFreeElement(spawnPoint[randomSpawnPoint].position, Quaternion.identity);
                     enemyGameObject.GetComponent<Enemy>().SetValues(spawnedEnemy);
 
@@ -83,7 +77,6 @@ public class EnemySpawner : MonoBehaviour
                     {
                         randomSpawnPoint = Random.Range(0, spawnPoint.Count);
                         spawnedEnemy = GetSpawnedEnemy();
-                        //enemyGameObject = Instantiate(enemyPrefab, spawnPoint[randomSpawnPoint].position, Quaternion.identity);
                         enemyGameObject = pool.GetFreeElement(spawnPoint[randomSpawnPoint].position, Quaternion.identity);
                         enemyGameObject.GetComponent<Enemy>().SetValues(spawnedEnemy);
 
@@ -91,7 +84,6 @@ public class EnemySpawner : MonoBehaviour
                         {
                             randomSpawnPoint = Random.Range(0, spawnPoint.Count);
                             spawnedEnemy = GetSpawnedEnemy();
-                            //enemyGameObject = Instantiate(enemyPrefab, spawnPoint[randomSpawnPoint].position, Quaternion.identity);
                             enemyGameObject = pool.GetFreeElement(spawnPoint[randomSpawnPoint].position, Quaternion.identity);
                             enemyGameObject.GetComponent<Enemy>().SetValues(spawnedEnemy);
                         }
@@ -124,7 +116,6 @@ public class EnemySpawner : MonoBehaviour
                 }
             }
             EnemyData spawnedEnemy = GetSpawnedEnemy();
-            //GameObject enemyGameObject = Instantiate(enemyPrefab, rageSpawnPoint.position, Quaternion.identity);
             PoolObject enemyGameObject = pool.GetFreeElement(rageSpawnPoint.position, Quaternion.identity);
             enemyGameObject.GetComponent<Enemy>().SetValues(spawnedEnemy);
         }
@@ -132,21 +123,23 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator Delay()
     {
-        InstantiateEnemy();
         yield return new WaitForSeconds(delay);
+        InstantiateEnemy();
         StartCoroutine(Delay());
     }
 
-    private void RageOn()
+    private void Rage(bool canSee)
     {
-        rage = true;
-        delay = 1f;
-    }
-
-    private void RageOff()
-    {
-        rage = false;
-        SetDelay();
+        if(canSee == true)
+        {
+            rage = false;
+            SetDelay();
+        }
+        if(canSee == false)
+        {
+            rage = true;
+            delay = 1f;
+        }
     }
 
     private void SetDelay()
